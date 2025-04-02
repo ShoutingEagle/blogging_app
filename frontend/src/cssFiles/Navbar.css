@@ -1,0 +1,236 @@
+/* Navbar Base */
+.navbar {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+}
+
+
+.homeButton,
+.loginButton,
+.signupButton {
+    position: fixed;
+    left: 3rem;
+    height: 8rem;
+    transform-origin: top left;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 1.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    transform: rotate(-90deg) translateY(-100%);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: left 0.3s ease, transform 0.3s ease;
+}
+
+.homePrimaryText,
+.loginPrimaryText,
+.signupPrimaryText {
+    color: #000000;
+}
+
+.homeSecondaryText {
+    color: #ffffff;
+}
+
+
+
+
+.homeButton {
+    top: 62vh;
+    background: #ff3d00;
+}
+
+.loginButton {
+    top: 56vh;
+    background: #8b3ed3;
+}
+
+.signupButton {
+    top: 50vh;
+    background: #dd2c2c;
+}
+
+
+
+.homeButton:hover,
+.loginButton:hover {
+    left: 5rem;
+}
+
+
+
+
+
+
+/* SEARCH STRIPE */
+.searchStripe {
+    position: fixed;
+    width: 25rem;
+    top: 0;
+    right: 2.5rem;
+    background: #2196f3;
+    transform-origin: top left;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0.5rem 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* SEARCH LOGO (Inside Stripe) */
+.searchLogo {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(141, 141, 141);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+}
+
+/* SEARCH INPUT */
+.searchInput {
+    width: 20rem;
+    height: 1.5rem;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.categoryContainer {
+    display: flex;
+    gap: 2rem;
+    /* Adjust spacing between category cards */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: fit-content;
+}
+
+.categoryStripe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    width: 3.5rem;
+    background: #931bd8;
+    z-index: 4;
+    border-radius: 0 0 0.2rem 0.2rem;
+}
+
+.categoryText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    transform: rotate(-90deg);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.categoryStripeViewAll,
+.categoryStripeGaming,
+.categoryStripePC,
+.categoryStripeConsole {
+    position: absolute;
+    left: -7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.rem;
+    height: 10rem;
+    width: 10rem;
+    background: #e6e6e6;
+    transform: rotate(-90deg);
+    transition: left 0.4s ease-in-out;
+    border-radius: 0 0 0.2rem 0.2rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: default;
+}
+
+.categoryStripeViewAll {
+    background-color: #f0b026;
+    z-index: 3;
+}
+
+.categoryStripeGaming {
+    background-color: #e24242;
+    z-index: 2;
+}
+
+.categoryStripePC {
+    background-color: #1bb970;
+    z-index: 1;
+}
+
+.categoryStripeConsole {
+    background-color: rgb(243, 119, 47);
+}
+
+.imageViewAll img,
+.imageStripeGaming img,
+.imageStripePc img,
+.imageStripeConsole img {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    /* Keeps aspect ratio */
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+
+.textcategoryStripe {
+    transform: rotate(-90);
+}
+
+.iconCategoryStripe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(90deg);
+}
+
+.textViewAll,
+.textGaming,
+.textPc,
+.textConsole {
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}

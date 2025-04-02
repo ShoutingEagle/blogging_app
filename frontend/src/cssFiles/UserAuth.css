@@ -1,0 +1,139 @@
+/* Full-page authentication background */
+.user-auth {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(to left, #000000, #222222, #333333, #292929);
+}
+
+/* Auth Container */
+.user-auth-container {
+    width: 40%;
+    height: 50%;
+    padding: 2rem;
+    background: linear-gradient(to left, #333333, #222222, #000000);
+    /* Semi-transparent background */
+    backdrop-filter: blur(10px);
+    /* Glassmorphism effect */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
+}
+
+/* Heading */
+.heading {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Form */
+.user-auth-form {
+    width: 100%;
+    display: grid;
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
+}
+
+/* Input Fields */
+.user-auth-email-input {
+    width: 80%;
+    height: 3rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-align: center;
+    outline: none;
+    transition: 0.3s;
+}
+
+.user-auth-email-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Input Focus */
+.user-auth-email-input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.otp-input-container {
+    display: flex;
+    gap: 10px;
+    /* Space between the input fields */
+    justify-content: center;
+    align-items: center;
+    /* Align the inputs in the center */
+    margin-bottom: 20px;
+    /* Space between the OTP fields and the button */
+}
+
+.user-auth-otp-verification-input {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 0 5px;
+    /* Margin between OTP inputs */
+    outline: none;
+}
+
+.user-auth-otp-verification-input:focus {
+    border: 2px solid #ee732c;
+    outline: none;
+}
+
+
+
+
+/* Button */
+.user-auth-otp-btn {
+    width: 80%;
+    height: 3rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.user-auth-otp-btn:hover {
+    background: linear-gradient(135deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}
+
+/* Links */
+.user-auth-links {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    display: grid;
+    gap: 0.5rem;
+}
+
+.user-auth-links p {
+    margin: 0;
+}
+
+.user-auth-links span {
+    color: #ff7e5f;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.user-auth-links span:hover {
+    text-decoration: underline;
+    color: #feb47b;
+}
