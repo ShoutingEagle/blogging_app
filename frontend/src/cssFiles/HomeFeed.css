@@ -1,26 +1,60 @@
 .home-feed {
     width: 99vw;
+    min-height: 100vh;
     display: grid;
     justify-content: center;
     align-items: center;
     background-color: #f5f5f5;
-    padding-top: 12rem;
 }
 
+.masonry-item{
+    width: fit-content;
+    margin-bottom: 1em;
+    box-sizing: border-box;
+}
 
 img {
     width: 100%;
-    margin-bottom: 1em;
 }
 
 .masonry-grid {
     max-width: 1400px;
-    columns: 275px;
+    columns: 4 200px;
 }
 
-/* .masonry-item {
-    border: 1px solid #000;
-    width: fit-content;
-    height: fit-content;
-    columns: 300px;
-} */
+
+
+/* No List Container Styles */
+.no-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.no-list-message {
+    max-width: 400px;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.no-list-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.no-list-message h3 {
+    color: #343a40;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.no-list-message p {
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+

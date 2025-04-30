@@ -1,0 +1,19 @@
+.user-stats {
+    display: flex;
+    align-items: center;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border-left: 5px solid #00ffc8;
+    transition: 0.3s;
+}
+
+.user-stats:hover {
+    background: #222;
+}
+
+.avatar {
+    font-size: 3rem;
+    margin-right: 20px;
+}

@@ -1,0 +1,86 @@
+/* Fullscreen dark overlay with a soft gradient */
+.error-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(161, 160, 160, 0.7));
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Center popup box with soft glassmorphism effect */
+.error-popup-center {
+    background: rgba(255, 255, 255, 0.95);
+    color: #444;
+    padding: 2rem ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.3s ease-in-out;
+    height: 20rem;
+    max-width: 90%;
+    width:30rem;
+    text-align: center;
+    position: relative;
+}
+
+/* Icon with vibrant color and spacing */
+.error-popup-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+   
+}
+
+.success{
+    color: #2ecc71;
+}
+
+.error{
+    color: #e74c3c; /* a soft red */
+}
+
+/* Error message text */
+.error-popup-message {
+    font-size: 17px;
+    font-weight: 500;
+    color: #555;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Optional fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+.error-popup-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+}
+
+.error-popup-close:hover {
+    color: #e74c3c;
+}

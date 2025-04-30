@@ -2,13 +2,12 @@ import { model, Schema } from "mongoose";
 import jwt from "jsonwebtoken"
 
 const userSchema = new Schema({
-    email : {
-        type: String,
-    },
-    username: {
-        type: String
-    }, 
+    email: {type: String},
+    username: {type: String}, 
+    profile_pic: {type:String},
+    refreshToken: {type: String},
 },{timestamps:true})
+
 
 userSchema.methods.generateAccessToken = function () {
     return jwt.sign(

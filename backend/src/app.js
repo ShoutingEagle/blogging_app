@@ -1,5 +1,8 @@
 import express from "express"
 import cors from "cors"
+import cookieParser from "cookie-parser";
+
+
 
 
 
@@ -8,6 +11,8 @@ const app = express()
 app.use(cors({origin: process.env.CORS_ORIGIN,credentials: true}))
 app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
+app.use(cookieParser());
+app.use(express.static("public"))
 
 
 
@@ -15,9 +20,13 @@ app.use(express.urlencoded({extended: true, limit: "16kb"}))
 
 //routes
 
-import authRoute from "./route/authRoute.js"
+import authRoutes from "./route/authRoutes.js"
+import blogRoutes from "./route/blogRoutes.js"
+import profileRoutes from "./route/profileRoutes.js"
 
-app.use("/api/v1/auth",authRoute)
+app.use("/api/v1/auth",authRoutes)
+app.use("/api/v1/blog",blogRoutes) 
+app.use("/api/v1/profile",profileRoutes) 
 
 
 export default app

@@ -43,9 +43,9 @@ const generateOtp = asyncHandler(async(req,res) => {
             {$set:{otp}},
             {upsert:true} // If no document exists, create a new one
         )
-
+    
     return res.status(201).json(
-        new ApiResponse(201, "OTP sent successfully")
+        new ApiResponse(201, "Otp successfully sent")
     );
     
 }) 

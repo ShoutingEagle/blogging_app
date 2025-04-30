@@ -1,0 +1,40 @@
+import refreshAccessToken from "../util/refreshAccessToken.js";
+import ApiError from "../util/ApiError.js";
+import asyncHandler from "../util/asyncHandler.js";
+import jwt from "jsonwebtoken"
+
+
+const validateUser = asyncHandler(async(req,res,next) => {
+    const token = req.cookies
+    const accessToken = token.accessToken
+    const refreshToken = token.refreshToken
+    
+    if(accessToken) {
+        if (accessToken) {
+            try {
+                const decodedToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+                if (!decodedToken) throw new ApiError(500, "Token decoding failed");
+                req.user = { _id: decodedToken._id };
+                return next();
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        
+    }
+    
+    if(!accessToken && !refreshToken) throw new ApiError(401, "unauthorized access")
+
+    if(refreshToken) {
+        try {
+            const newAccessToken = await refreshAccessToken(req,res)
+            const decodedToken = jwt.verify(newAccessToken,process.env.ACCESS_TOKEN_SECRET)
+            req.user = {_id:decodedToken._id}
+            return next()
+        } catch (error) {
+            throw new ApiError(500,"token verification failed")
+        }
+    }
+})
+
+export default validateUser

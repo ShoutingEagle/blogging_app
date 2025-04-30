@@ -1,0 +1,112 @@
+.complete-profile {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInBackground 1s ease forwards;
+}
+
+@keyframes fadeInBackground {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.complete-profile-container {
+    max-width: 420px;
+    padding: 40px 30px;
+    border: none;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    transform: scale(0.95);
+    animation: popUp 0.8s ease forwards;
+    transition: transform 0.3s ease;
+}
+
+.complete-profile-container:hover {
+    transform: scale(1.01);
+}
+
+@keyframes popUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.complete-profile-heading {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.complete-profile-subtext {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.complete-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.input-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-group input[type="text"],
+.input-group input[type="file"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="file"]:focus {
+    border-color: #6a1b9a;
+    box-shadow: 0 0 8px rgba(106, 27, 154, 0.3);
+    outline: none;
+}
+
+.submit-button {
+    padding: 14px;
+    background: linear-gradient(90deg, #6a1b9a, #8e24aa);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-button:hover {
+    background: linear-gradient(90deg, #8e24aa, #6a1b9a);
+    transform: translateY(-2px);
+}
+
+.submit-button:disabled{
+    cursor:default;
+}

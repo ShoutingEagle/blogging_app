@@ -107,11 +107,18 @@
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .user-auth-otp-btn:hover {
     background: linear-gradient(135deg, #feb47b, #ff7e5f);
     transform: scale(1.05);
+}
+
+.user-auth-response-message {
+    color: #fff;
 }
 
 /* Links */
@@ -137,3 +144,38 @@
     text-decoration: underline;
     color: #feb47b;
 }
+
+
+
+
+
+
+
+
+
+/* New animation keyframes */
+
+.user-auth-container {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Apply on mode change */
+@keyframes rotateCard {
+    from {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    to {
+        opacity: 100;
+        transform: translateY(0rem);
+    }
+}
+
+
+.animate {
+    animation: rotateCard 0.8s ease;
+}
+
+
+

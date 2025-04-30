@@ -1,34 +1,92 @@
 import { useEffect, useRef, useState } from "react";
-import "../cssFiles/UserAuth.css"; // Make sure to style it properly
-import { useParams } from "react-router-dom";
+import "../cssFiles/UserAuth.css";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios"
+import { baseUrl,sendOtp } from "../network/endPoints.js";
+import Loader from "../components/Loader.jsx"
+import apiClient from "../services/apiClient";
 
 const AuthComponent = () => {
     const { mode } = useParams()
     const [isOtpSent, setIsOtpSent] = useState(false)
+    const [isLoading,setIsLoading] = useState(false)
     const emailRef = useRef()
+    const [email, setEmail] = useState("")
     const otpRef = useRef([]);
+    const [responseMessage, setResponseMessage] = useState("")
+    const navigate = useNavigate()
 
-    const handleVerifyOtp = (e) => {
-        e.preventDefault()
-        let otp = Number(otpRef.current.map((item) => item.value).join(""))
-        otpRef.current.map((item) => {
-            item.value = ""
-        })
-    }
+   
+    const [animateClass, setAnimateClass] = useState("");
 
-    const handleSendOtp = (e) => {
-        e.preventDefault()
-        const email = emailRef.current.value.toLowerCase()
-        emailRef.current.value = ""
-        const response = axios.post("http://localhost:8000/api/v1/auth/userAuth-generateOtp", {
+    useEffect(() => {
+        // Trigger animation on mode switch
+        setAnimateClass("animate");
+        const timer = setTimeout(() => {
+            setAnimateClass(""); // remove after animation
+        }, 400);
+    
+        return () => clearTimeout(timer);
+    }, [mode]);
+
+    const handleVerifyOtp = async (e) => {
+        e.preventDefault();
+        let otp = Number(otpRef.current.map((item) => item.value).join(""));
+
+        otpRef.current.forEach((item) => (item.value = "")); // Clear OTP fields
+
+
+        const response = await axios.post("http://localhost:8000/api/v1/auth/userAuth-auth", {
             email,
+            otp,
             mode
+        }, {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true
+        } // Ensuring JSON format 
+        )
+
+        if (!response.data.success) {
+            throw new Error(response.data.data || "Some error occurred, please try again");
+        }
+
+        setResponseMessage(response.data.data);
+        navigate("/");
+
+    };
+
+
+    const handleSendOtp = async (e) => {
+        e.preventDefault();
+        setIsLoading(true)
+        const enteredEmail = emailRef.current.value.trim().toLowerCase();
+        if (!enteredEmail) {
+            setResponseMessage("Email is required");
+            return;
+        }
+
+        setEmail(enteredEmail); // Update the email state
+
+        const response = await apiClient({
+            method: "POST",
+            url: sendOtp,
+            baseURL: baseUrl,
+            withCredentials: true,
+            data: {
+                email:enteredEmail,
+                mode
+            }
         })
 
-        if (response) setIsOtpSent(true)
-        setIsOtpSent(true)
-    }
+        if (!response.success) {
+            setResponseMessage(response.message)
+            throw new Error(response.message || "Some error occurred, please try again");
+        }
+        setIsOtpSent(true);
+        setIsLoading(false)
+        setResponseMessage(response.message);
+    };
+
 
     const handleChange = (e, index) => {
         const { value } = e.target;
@@ -45,11 +103,10 @@ const AuthComponent = () => {
         }
     }
 
+ 
     return (
         <div className="user-auth">
-            {/* <div className="user-auth-overlay"></div> */}
-            {/* <button className="user-auth-back-btn">Back</button> */}
-            <div className="user-auth-container">
+            <div className={`user-auth-container ${animateClass}`}>
                 <p className="heading">{mode === "signup" ? "Sign Up" : "Log In"}</p>
                 <form className="user-auth-form" name="email" onSubmit={!isOtpSent ? handleSendOtp : handleVerifyOtp}>
                     {!isOtpSent ? (
@@ -76,20 +133,22 @@ const AuthComponent = () => {
                     )}
                     <button
                         className="user-auth-otp-btn"
-                    >
-                        {!isOtpSent ? "Send OTP" : "Verify OTP"}
+                        disabled={isLoading}
+                    >   
+                        {isLoading?<Loader/>:(!isOtpSent ? "Send OTP" : "Verify OTP")}
+                        
                     </button>
                 </form>
                 <div className="user-auth-links">
-                    <p>Need help?</p>
+                    <p >Need help?</p>
                     <p>
-                        {isOtpSent ? (
+                        {mode==="signup" ? (
                             <>
-                                Already have an account? <span>Login</span>
+                                Already have an account? <span onClick={() => navigate("/userAuth/login")}>Login</span>
                             </>
                         ) : (
                             <>
-                                Don't have an account? <span>SignUp</span>
+                                Don't have an account? <span onClick={() => navigate("/userAuth/signup")}>SignUp</span>
                             </>
                         )}
                     </p>

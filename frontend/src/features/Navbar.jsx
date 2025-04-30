@@ -6,6 +6,8 @@ import { MdLogin } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa6";
+import { useSelector } from "react-redux";
+
 
 
 
@@ -15,24 +17,15 @@ import asset5 from "../assets/asset5.png"
 import asset6 from "../assets/asset6.png"
 
 
-const HomeButton = () => {
-    const navigate = useNavigate();
-    return (
-        <div className="homeButton" onClick={() => navigate("/")}>
-            <div className="homeIcon"><FaHome /></div>
-            <div className="homeText">
-                <span className="homePrimaryText">Gaming</span>
-                <span className="homeSecondaryText">Geeks</span>
-            </div>
-        </div>
 
-    );
-};
+
+
 
 const LoginButton = () => {
     const navigate = useNavigate();
+    const status = useSelector(state => state.status.userStatus)
     return (
-        <div className="loginButton" onClick={() => navigate("/userAuth/login")}>
+        <div className={`${status ? "loggedIn" : ""} loginButton`} onClick={() => navigate("/userAuth/login")}>
             <div className="loginIcon"><MdLogin /></div>
             <div className="loginText">
                 <span className="loginPrimaryText">Login</span>
@@ -43,8 +36,9 @@ const LoginButton = () => {
 
 const SignupButton = () => {
     const navigate = useNavigate();
+    const status = useSelector(state => state.status.userStatus)
     return (
-        <div className="signupButton" onClick={() => navigate("/userAuth/signup")}>
+        <div onClick={() => navigate("/userAuth/signup")} className={`${status ? "loggedIn" : ""} signupButton`}>
             <div className="signupIcon"><FaUser /></div>
             <div className="signupText">
                 <span className="signupPrimaryText">Signup</span>
@@ -52,8 +46,6 @@ const SignupButton = () => {
         </div>
     );
 };
-
-
 
 const SearchBar = () => {
     return (
@@ -66,8 +58,6 @@ const SearchBar = () => {
         </div>
     )
 }
-
-
 
 const Category = () => {
     const [hoveredCategory, setHoveredCategory] = useState(null);
@@ -137,14 +127,29 @@ const Category = () => {
     );
 };
 
+const Dashboard = () => {
+    const navigate = useNavigate();
+    const status = useSelector(state => state.status.userStatus);
+
+    if (!status) return null; // Only show when logged in
+
+    return (
+        <div className="dashboardButton" onClick={() => navigate("/user/dashboard")}>
+            <div className="dashboardIcon"><FaUser /></div>
+            <div className="dashboardText">
+                <span className="dashboardPrimaryText">Dashboard</span>
+            </div>
+        </div>
+    );
+};
 
 const Navbar = () => {
     return (
         <nav className="navbar">
-            <HomeButton />
             <LoginButton />
             <SignupButton />
             <SearchBar />
+            <Dashboard />
             <Category />
         </nav>
     );

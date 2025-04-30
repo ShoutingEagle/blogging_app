@@ -1,0 +1,27 @@
+.settings-page {
+    width: 100%;
+    margin: 1rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    font-family: sans-serif;
+}
+
+.setting-header {
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.setting-img {
+    width: 35px;
+    height: 35px;
+}
+
+.setting-header p {
+    height: fit-content;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
