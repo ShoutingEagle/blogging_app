@@ -1,45 +1,45 @@
 .dashboard {
-    width: 99vw;
+    width: 100vw; /* Use full width */
     height: 100vh;
     display: flex;
+    justify-content: end;
+    background: linear-gradient(to left, rgba(255, 218, 185, 0.295), rgba(255, 255, 255, 0.5),rgba(255, 218, 185, 0.295));
+    
 }
 
 .dashboard-section {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    grid-template-columns: 150px 150px;
-    grid-template-rows: 150px 150px auto;
-    grid-template-areas:
-        "header header"
-        "blog settings"
-        "marked-articles marked-articles"
-        "articles articles";
+    align-items: end;
     gap: 1rem;
-    width: 20%;
+    width: 20rem;
     height: 100%;
-    background-color: #fff;
-    padding-left: 5rem;
-    padding-right: 2rem;
-    padding-top: 1rem;
-    background: linear-gradient(to left, rgba(255, 218, 185, 0.295), rgba(255, 255, 255, 0.5));
+
 }
 
 
 
 
 .dashboard-header {
-    grid-area: header;
     background: linear-gradient(to right, #fffbd5, #ffffff);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     padding: 1rem;
+    width: 100%;
+    height: 10rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     overflow: hidden;
     cursor: pointer;
     transition: transform 200ms ease-in-out;
+    overflow: hidden;
 }
+
+/* .dashboard-header img{
+    position: absolute;
+    object-fit: contain;
+} */
 
 .dashboard-header:hover {
     transform: scale(1.05);
@@ -63,13 +63,12 @@
 }
 
 .dashboard-header-user-container {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    object-fit: cover;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     border: 1px solid rgb(48, 48, 48);
 }
@@ -78,12 +77,24 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Ensures the image covers the div, adjusting its aspect ratio */
+    display: block;
+}
+
+
+
+
+.dashboard-write-blog-setting{
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    gap: 1rem;
 }
 
 
 .dashboard-write-blog {
-    grid-area: blog;
+    width: 50%;
     background: linear-gradient(to left, #e0fff4, #f9f9f9);
     transition: transform 200ms ease-in-out;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -94,6 +105,7 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    ;
 }
 
 .dashboard-write-blog:hover {
@@ -102,6 +114,7 @@
 
 .dashboard-write-blog img {
     position: absolute;
+    width: 8rem;
     right: -4rem;
     bottom: 0;
     z-index: 1;
@@ -115,33 +128,50 @@
 }
 
 .dashboard-blogs-your-articles {
-    grid-area: articles;
+    width: 100%;
     background: linear-gradient(to right, #d9faff, #f3f9ff);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    height: 150px;
+    height: 250px;
     /* or whatever height suits you */
     padding: 1rem;
     transition: transform 200ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
 }
 
 .dashboard-blogs-your-articles:hover {
     transform: scale(1.03);
 }
 
-.dashboard-blogs-your-articles p {
+.dashboard-blogs-your-articles-header {
     font-size: 1.2rem;
     font-weight: 700;
 }
 
+.see-all-container{
+    text-align: right;
+}
+
+.see-all{
+    cursor: pointer;
+    font-weight: 500;
+}
+
+
+
 
 .dashboard-blogs-marked-articles {
-    grid-area: marked-articles;
+    width: 100%;
     background: linear-gradient(135deg, #dcffd1, #f1f1f1);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    height: 300px;
+    height: 250px;
     /* or whatever height suits you */
     padding: 1rem;
     transition: transform 200ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .dashboard-blogs-marked-articles:hover {
@@ -153,10 +183,22 @@
     font-weight: 700;
 }
 
+.user-blogs-list-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow: hidden;
+}
+
+.user-blogs-list{
+    font-size: 0.8rem;
+}
+
+
 
 
 .dashboard-blogs-setting {
-    grid-area: settings;
+    width: 50%;
     background: linear-gradient(to left, #f9f9f9, #e0eafc);
     transition: transform 200ms ease-in-out;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -176,6 +218,7 @@
 
 .dashboard-blogs-setting img {
     position: absolute;
+    width: 8rem;
     left: -2rem;
     z-index: 1;
 }
@@ -209,52 +252,8 @@
     position: relative;
     width: 80%;
     overflow-y: scroll;
-    background: linear-gradient(to right, rgba(255, 218, 185, 0.295), rgba(255, 255, 255, 0.5));
-
+    padding-left: 2rem;
 }
-
-.notification {
-    position: fixed;
-    width: 80%;
-    /* viewport width */
-    height: 100%;
-    /* viewport height */
-    background: linear-gradient(to left, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
-    backdrop-filter: blur(2px);
-
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    overflow: hidden;
-    /* prevent content from overflowing */
-}
-
-
-.notification-container {
-    width: 15rem;
-    height: 15rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    position: relative;
-}
-
-.dashboard-notification-close-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: transparent;
-    padding: 0.5rem;
-}
-
 
 .close-btn {
     width: 1.2rem;

@@ -22,7 +22,10 @@ const blogSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "userDetail",
         required: true
+    },
+    sentiment: {
+        type: String
     }
-})
+},{timestamps:true})
 
 export default model("blog",blogSchema)

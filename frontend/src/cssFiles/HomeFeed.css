@@ -4,57 +4,195 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    background-color: #f5f5f5;
-}
-
-.masonry-item{
-    width: fit-content;
-    margin-bottom: 1em;
-    box-sizing: border-box;
-}
-
-img {
-    width: 100%;
-}
-
-.masonry-grid {
+    background-color: #f4f4f4;
+    padding: 2rem 1rem;
+  }
+  
+  /* Masonry Grid */
+  .masonry-grid {
     max-width: 1400px;
     columns: 4 200px;
-}
+    column-gap: 1rem;
+  }
+  
+  /* Masonry Card */
+  .masonry-item {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .masonry-item:hover {
+    transform: scale(1.03);
+    z-index: 2;
 
+  }
+  
+  /* Image Wrapper */
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Main Blog Image */
+  .masonry-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .masonry-item:hover .masonry-image {
+    transform: scale(1.02);
+  }
+  
+  /* Blog Title Overlay */
+  .masonry-title,
+  .masonry-title-hidden {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    color: white;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1;
+  }
+  
+  .masonry-title {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .masonry-title-hidden {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  
+  /* User Info Section */
+  .profile-pic,
+  .profile-pic-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2; /* <-- Ensures it renders above the blog image */
+  }
+  
 
+  .profile-pic{
+    opacity: 1;
+    transform: translateY(0);
+    display: flex;
+    justify-content: space-between;
+  }
 
-/* No List Container Styles */
-.no-list-container {
+  .profile-pic-hidden{
+    opacity: 0;
+    transform: translateY(-10px);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .profile-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .user-pic {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    background-color: #ddd;
+  }
+
+  .sentiment{
+    height: 2rem;
+    width: 6rem;
+    background: red;
+    color: rgba(255, 255 , 255 , 255);
+  }
+
+  .negetive{
+    /* Soothing red */
+    background: rgba(248, 215, 218, 0.6);
+  }
+  
+  .positive{
+    /* Soothing green */
+    background: rgba(212, 237, 218, 0.6);
+  }
+  
+  .neutral{
+    /* Soothing yellow */
+    background: rgba(255, 243, 205, 0.6);
+    
+  }
+
+  /* Username */
+  .username {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .date{
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #ffffff;
+  }
+  
+  /* No Blog Message Styling */
+  .no-list-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     text-align: center;
-}
-
-.no-list-message {
+  }
+  
+  .no-list-message {
     max-width: 400px;
     padding: 2rem;
-    background-color: #f8f9fa;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.no-list-icon {
+    background-color: #ffffff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+  
+  .no-list-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
     display: block;
-}
-
-.no-list-message h3 {
-    color: #343a40;
-    margin-bottom: 0.5rem;
+  }
+  
+  .no-list-message h3 {
+    color: #333;
     font-size: 1.5rem;
-}
-
-.no-list-message p {
-    color: #6c757d;
     margin-bottom: 0.5rem;
+  }
+  
+  .no-list-message p {
+    color: #666;
     font-size: 1rem;
-}
-
+    margin-bottom: 0.25rem;
+  }
+  

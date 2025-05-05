@@ -20,26 +20,29 @@ function Home() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchAuthStatus = async () => {
-            const response = await apiClient({
-                method: "GET",
-                url: validateUser,
-                baseURL: baseUrl,  
-                withCredentials: true
-            })
-
-            if(!response.data.isProfileComplete){
-                navigate(completeProfile)
-            } 
-            response.success? dispatch(checkAuthStatus(true)): navigate(login);
-        };
-        fetchAuthStatus();
+        try {
+            const fetchAuthStatus = async () => {
+                const response = await apiClient({
+                    method: "GET",
+                    url: validateUser,
+                    baseURL: baseUrl,  
+                    withCredentials: true
+                })
+    
+                if(!response.data.isProfileComplete){
+                    navigate(completeProfile)
+                } 
+                response.success? dispatch(checkAuthStatus(true)): navigate(login);
+            };
+            fetchAuthStatus();
+        } catch (error) {
+            console.log(error)
+        }
     }, []);
     return (
         <>
             <Navbar />
             <HomeFeed />
-            
         </>
     );
 }

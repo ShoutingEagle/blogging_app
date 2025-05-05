@@ -10,13 +10,14 @@ import BlogWriteForm from "./features/BlogWriteForm.jsx"
 import Setting from "./features/Setting.jsx"
 import HomeButton from './features/HomeButton.jsx'
 import CompleteProfile from './features/Completeprofile.jsx'
+import BlogPage from './features/BlogPage.jsx'
 
 
 function App() {
 
   return (
     <div >
-      <HomeButton/>
+      {/* <HomeButton/> */}
       <Routes>
         <Route path='/' element={<Home />} >
           <Route index element={<HomeFeed />} />
@@ -25,6 +26,8 @@ function App() {
         <Route path='/userAuth/:mode' element={<UserAuth />} />
 
         <Route path='/user/complete-profile' element={<CompleteProfile/>}/>
+
+        <Route path='/blog/:blogId' element={<BlogPage/>}/>
 
         <Route path='/user/dashboard' element={<Dashboard />}>
           <Route index element={<ArticleList />} />

@@ -6,6 +6,9 @@ import assetModel from "../model/assetSchema.model.js"
 
 const blogList = asyncHandler(async(req,res) => {
     const bloglists = await blogModel.find()
+        .populate("owner","username profile_pic")
+        .sort({createdAt : -1})
+
     if(!bloglists) throw new ApiError(500,"No list found")
     
 

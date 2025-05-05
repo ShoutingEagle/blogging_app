@@ -6,16 +6,16 @@ const commentSchema = new Schema({
         trim: true,
         required: true
     },
-    blogId: {
+    blogRef: {
         type: Schema.Types.ObjectId,
         ref: "blog",
         required: true
     },
-    parentCommentId: {
+    parentCommentRef: {
         type: Schema.Types.ObjectId,
         ref: "comment"
     },
-    commentedUserId: {
+    commentedUserRef: {
         type: Schema.Types.ObjectId,
         ref: "userDetail",
         required

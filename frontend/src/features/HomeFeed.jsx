@@ -1,30 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../cssFiles/HomeFeed.css"
 import apiClient from "../services/apiClient";
 import { baseUrl,blogList } from "../network/endPoints";
 import { useSelector,useDispatch } from "react-redux";
-import { setBlogLists } from "../slices/blogSlice.js";
+import { setBlogId,setArticle, setBlogLists } from "../slices/blogSlice.js";
+import {useNavigate} from "react-router-dom"
 
 
 
 
 
 const HomeFeed = () => {
-    const blogLists = useSelector(state => state.blog.bloglists)
+    
+    const [hoverId,setHoverId] = useState("")
+    const [blogLists,setBlogLists] = useState([]) 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchBlogList = async () => {
-            const response = await apiClient({
-                method: "GET",
-                url: blogList,
-                baseURL: baseUrl,
-                withCredentials:true
-            })
-            dispatch(setBlogLists(response.data))
-        }
-        fetchBlogList()
-    },[])
+            try {
+                const response = await apiClient({
+                    method: "GET",
+                    url: blogList,
+                    baseURL: baseUrl,
+                    withCredentials: true
+                });
+                setBlogLists(response.data);
+            } catch (error) {
+                console.error("Failed to fetch blog list:", error);
+            }
+        };
+        fetchBlogList();
+    }, []);
+
+    const handleClick = (id) => {
+        navigate(`/blog/${id}`)
+    } 
+    
 
     return (
         <div className="home-feed">
@@ -39,12 +52,43 @@ const HomeFeed = () => {
                     </div>
                 </div> :
                 <div className="masonry-grid">
-                    {blogLists.map((item) => (
-                        <div key={item._id} className="masonry-item">
-                            <img src={item.article_image} alt="img" className="masonry-image"/>
-                            {/* <img src={item.profilePic} alt="img" className="profile-pic"/> */}
-                            <p className="masonry-title">{item.title}</p> 
-                        </div>
+                    {blogLists&&blogLists.map((item) => (
+                        <div 
+                        key={item._id} 
+                        className="masonry-item"
+                        onMouseOver={() => setHoverId(item._id)} 
+                        onMouseLeave={() => setHoverId("")}
+                        onClick={(e) => handleClick(item._id)}
+                        >
+                            <div className="image-wrapper">
+                                {item.owner && (
+                                    <div className={hoverId === item._id ? "profile-pic" : "profile-pic-hidden"}>
+                                        <div className="profile-info">
+                                            <img src={item.owner.profile_pic} className="user-pic" alt="img" />
+                                            <div>
+                                                <p className="username">{item.owner.username}</p>
+                                                <p  className="date">
+                                                {new Date(item.createdAt).toLocaleDateString("en-US", {
+                                                    year: "numeric",
+                                                    month: "long",
+                                                    day: "numeric",
+                                                })}
+                                                </p>
+                                            </div>
+                                        </div>
+                                  
+                                        <div title="Sentiment of Article" className={`sentiment`}></div>
+                                  </div>
+                                  
+                                )}
+
+                                <img src={item.article_image} alt="img" className="masonry-image"/>
+                                <div className={hoverId === item._id ? "masonry-title" : "masonry-title-hidden"}>
+                                    <p title="Title" className="title">{item.title.length >= 60 ? item.title.substring(0, 60) + "..." : item.title}</p>
+                                </div>
+                            </div>
+                      </div>
+                      
                     ))}
                 </div>
             }

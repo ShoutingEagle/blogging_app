@@ -37,6 +37,6 @@ const assetSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "blog"
     }
-})
+},{timestamps:true})
 
 export default model("asset",assetSchema)

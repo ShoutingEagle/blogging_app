@@ -1,32 +1,149 @@
-import React from 'react';
-import '../cssFiles/BlogPage.css'; // We will write CSS separately
+import React, { useEffect, useState} from "react";
+import {useParams} from "react-router-dom" 
+import "../cssFiles/BlogPage.css";
+import { useSelector } from "react-redux";
+import apiClient from "../services/apiClient";
+import { baseUrl, blogDetailEndpoint } from "../network/endPoints";
+
 
 const BlogPage = () => {
+  const [activeTab, setActiveTab] = useState("article");
+  const [blog,setBlog] = useState(null)
+  const {blogId} = useParams()
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try {
+        const response = await apiClient({
+          method : "GET",
+          url: `${blogDetailEndpoint}/${blogId}` ,
+          baseURL: baseUrl,
+          withCredentials: true
+        })
+        console.log(response.data)
+        setBlog(response.data)
+        
+      } catch (error) {
+        console.log(error)        
+      }
+
+
+    }
+
+    fetchData()
+  },[])
+
+  if(!blog){
+    return (
+      <div>
+          Loading...
+      </div>
+    )
+  }
+
+
   return (
-    <div className="blog-page">
-      <div className="blog-header">
-        <h1 className="blog-title">Blog Title Goes Here</h1>
-        <div className="blog-author-info">
-          <div className="author-avatar">A</div>
-          <div className="author-details">
-            <p className="author-name">Author Name</p>
-            <p className="blog-date">April 26, 2025</p>
+    
+    <div className="blog-page-container">
+      <div className="blog-page-banner-container">
+        <img
+          src={blog.article_image}
+          alt="Blog Banner"
+          className="blog-page-banner"
+        />
+
+        <div className="blog-page-banner-overlay-color"></div>
+
+        <div className="blog-page-banner-wrapper">
+
+          <div className="blog-page-banner-overlay">
+            <div className="blog-page-profile-pic-wrapper">
+              <img
+                src={blog.owner.profile_pic}
+                alt="Profile"
+                className="blog-page-profile-pic"
+              />
+            </div>
+            <div className="blog-page-user-details">
+              <p className="blog-page-username">{blog.owner.username}</p>
+              <p className="blog-page-date">{new Date(blog.createdAt).toLocaleDateString("en-US", {year: "numeric",month: "long",day: "numeric"})}</p>
+            </div>
           </div>
+
+          <p className="blog-page-title">{blog.title}</p>
+
         </div>
       </div>
 
-      <div className="blog-content">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue...
-        </p>
-        <p>
-          More blog paragraphs go here...
-        </p>
-      </div>
 
-      <div className="comments-section">
-        <h2>Comments</h2>
-        {/* Later we'll add the comment input and comment list here */}
+      <div className="blog-page-content-cover">
+        <div className="blog-page-tab-container">
+          <div
+            className={`blog-page-tab ${activeTab === "article" ? "active" : ""}`}
+            onClick={() => setActiveTab("article")}
+          >
+            Article
+          </div>
+          <div
+            className={`blog-page-tab ${activeTab === "comments" ? "active" : ""}`}
+            onClick={() => setActiveTab("comments")}
+          >
+            Comments
+          </div>
+        </div>
+
+        <div className="blog-page-tab-content">
+          {activeTab === "article" ? (
+            <div className="blog-page-article">
+              
+              <p className="blog-page-text">
+                {blog.article}
+              </p>
+
+             
+            </div>
+          ) : (
+            <div className="blog-page-comments">
+              <h3 className="blog-page-comments-title">Comments</h3>
+              <div className="blog-page-comment">
+                <img
+                  src="https://randomuser.me/api/portraits/women/65.jpg"
+                  alt="User"
+                  className="blog-page-comment-avatar"
+                />
+                <div>
+                  <p className="blog-page-comment-user">Emily Watson</p>
+                  <p className="blog-page-comment-text">This was super helpful, thanks for breaking it down so well!</p>
+                </div>
+              </div>
+
+              <div className="blog-page-comment">
+                <img
+                  src="https://randomuser.me/api/portraits/men/42.jpg"
+                  alt="User"
+                  className="blog-page-comment-avatar"
+                />
+                <div>
+                  <p className="blog-page-comment-user">Michael Trent</p>
+                  <p className="blog-page-comment-text">Looking forward to more React content like this.</p>
+                </div>
+              </div>
+
+              <div className="blog-page-comment">
+                <img
+                  src="https://randomuser.me/api/portraits/men/23.jpg"
+                  alt="User"
+                  className="blog-page-comment-avatar"
+                />
+                <div>
+                  <p className="blog-page-comment-user">Daniel Lee</p>
+                  <p className="blog-page-comment-text">Could you do one on React Router next? 🙏</p>
+                </div>
+              </div>
+            </div>
+
+          )}
+        </div>
       </div>
     </div>
   );

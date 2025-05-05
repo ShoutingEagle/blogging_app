@@ -1,66 +1,182 @@
-.blog-page {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .blog-header {
-    margin-bottom: 30px;
-  }
-  
-  .blog-title {
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
-  
-  .blog-author-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .author-avatar {
-    width: 50px;
-    height: 50px;
-    background-color: #4caf50;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-  }
-  
-  .author-details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .author-name {
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .blog-date {
-    font-size: 14px;
-    color: gray;
-    margin: 0;
-  }
-  
-  .blog-content {
-    line-height: 1.7;
-    font-size: 18px;
-    color: #333;
-  }
-  
-  .comments-section {
-    margin-top: 50px;
-  }
-  
-  .comments-section h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-  
+.blog-page-container {
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  color: #222;
+}
+
+.blog-page-banner-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.blog-page-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-page-banner-overlay-color{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1),transparent);
+}
+
+.blog-page-banner-wrapper{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 0.7rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+}
+
+.blog-page-title {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+.blog-page-banner-overlay {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.blog-page-profile-pic-wrapper{
+  height: 3rem;
+  width: 3rem;
+  overflow: hidden;
+}
+
+.blog-page-profile-pic {
+  width: 100%;
+  object-fit: cover;
+}
+
+.blog-page-user-details {
+}
+
+.blog-page-username {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.blog-page-date {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.blog-page-content-cover {
+  margin-inline: auto;
+  max-width: 1500px;
+  padding: 30px 20px;
+}
+
+.blog-page-tab-container {
+  position: sticky;
+  top: 0; /* Or adjust if you have a fixed navbar above */
+  background-color: white;
+  z-index: 100;
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 25px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.blog-page-tab-container.sticky {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.blog-page-tab {
+  padding: 1rem 2rem;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.blog-page-tab.active {
+  background: linear-gradient(to bottom,rgba(247, 223, 144, 0.8),transparent);
+}
+
+.blog-page-tab:hover {
+  background-color: #f5f5f5;
+}
+
+.blog-page-tab-content {
+  padding: 0 5px;
+  min-height: 100rem; /* or whatever height works well for your layout */
+}
+
+.blog-page-article {
+  line-height: 1.7;
+}
+
+
+.blog-page-text {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.blog-page-comments {
+  padding: 10px;
+  background-color: #fafafa;
+  border-radius: 8px;
+  min-height: 100px;
+  text-align: center;
+}
+
+.blog-page-comment-placeholder {
+  color: #888;
+  font-size: 16px;
+}
+
+
+.blog-page-comments-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.blog-page-comment {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.blog-page-comment-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.blog-page-comment-user {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.blog-page-comment-text {
+  font-size: 14px;
+  color: #444;
+}

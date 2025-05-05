@@ -4,6 +4,32 @@ import ApiError from "../util/ApiError.js";
 import blogModel from "../model/blogSchema.model.js";
 import assetModel from "../model/assetSchema.model.js";
 import ApiResponse from "../util/ApiResponse.js";
+import axios from "axios"; 
+
+
+  const analyzeSentiment = async (article) => {
+    const prompt = `Analyze the sentiment of the following article. Respond with just one word: Positive, Negative or Neutral. 
+    Article: ${article} `
+    try {
+      const response = await axios({
+        method:"POST",
+        url:"https://open-ai21.p.rapidapi.com/conversationllama",
+        headers : {
+          "Content-Type": "application/json",
+          "x-rapidapi-host": "open-ai21.p.rapidapi.com",
+          "x-rapidapi-key": process.env.KEY 
+        },
+        data: {
+          messages:[{role:"user",content:prompt}],
+          "web_access":false
+        }
+      })
+      return response.data.result
+    } catch (error) {
+      throw new ApiError(500,error.message,"Sentiment Creation Failed")
+    }
+  };
+
 
 
 const blogPost = asyncHandler(async(req,res) => {
@@ -45,11 +71,14 @@ const blogPost = asyncHandler(async(req,res) => {
     const asset = await assetModel.create(assetFields)
 
     if(!asset) throw new ApiError(500,"Asset Model creation failed")
+    
+
+    const sentiment = await analyzeSentiment(article);
 
 
     // create post
 
-    const post = await blogModel.create({category,title,article,article_image:asset.secure_url,owner:_id})
+    const post = await blogModel.create({category,title,article,article_image:asset.secure_url,owner:_id,sentiment})
 
     if(!post) throw new ApiError(500,"post cannot be created")
     
