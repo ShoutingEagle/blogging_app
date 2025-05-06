@@ -26,6 +26,7 @@ const HomeFeed = () => {
                     baseURL: baseUrl,
                     withCredentials: true
                 });
+                console.log(response.data)
                 setBlogLists(response.data);
             } catch (error) {
                 console.error("Failed to fetch blog list:", error);
@@ -77,7 +78,7 @@ const HomeFeed = () => {
                                             </div>
                                         </div>
                                   
-                                        <div title="Sentiment of Article" className={`sentiment`}></div>
+                                        <div title="Sentiment of Article" className={`sentiment ${item.sentiment.toLowerCase()}`}>{item.sentiment}</div>
                                   </div>
                                   
                                 )}

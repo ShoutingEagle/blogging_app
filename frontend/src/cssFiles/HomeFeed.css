@@ -122,20 +122,18 @@
     width: 36px;
     height: 36px;
     object-fit: cover;
-    border: 2px solid #ccc;
-    background-color: #ddd;
+    background: transparent;
   }
 
   .sentiment{
-    height: 2rem;
-    width: 6rem;
-    background: red;
-    color: rgba(255, 255 , 255 , 255);
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+    padding: 0.2rem;
   }
 
-  .negetive{
+  .negative{
     /* Soothing red */
-    background: rgba(248, 215, 218, 0.6);
+    background: rgba(255, 16, 36, 0.6);
   }
   
   .positive{

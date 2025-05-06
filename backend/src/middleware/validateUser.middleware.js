@@ -8,6 +8,7 @@ const validateUser = asyncHandler(async(req,res,next) => {
     const token = req.cookies
     const accessToken = token.accessToken
     const refreshToken = token.refreshToken
+
     
     if(accessToken) {
         if (accessToken) {

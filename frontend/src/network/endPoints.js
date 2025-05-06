@@ -4,9 +4,14 @@ const baseUrl = "http://localhost:8000/api/v1"
 const validateUser = "/auth/check-auth"
 const sendOtp = "/auth/userAuth-generateOtp"
 const remainingUserDetail = "/profile/user-detail"
+
+
 const blogList = "/blog/blog-list"
 const blogPost = "/blog/blog-post"
 const blogDetailEndpoint = "/blog/blogId"
+
+const getBlogComments = "blog/get-comments"
+const postBlogComment = "blog/post-comment"
 
     // user-related
     const getUserDetail = "/profile/get-user-detail" 
@@ -18,6 +23,6 @@ const blogDetailEndpoint = "/blog/blogId"
 const login = "/userAuth/login"
 const completeProfile = "/user/complete-profile"
 
-export {baseUrl,validateUser,sendOtp,blogList,blogPost,remainingUserDetail,getUserDetail, blogDetailEndpoint}
+export {baseUrl,validateUser,sendOtp,blogList,blogPost,remainingUserDetail,getUserDetail, blogDetailEndpoint, getBlogComments, postBlogComment}
 
 export {login,completeProfile}

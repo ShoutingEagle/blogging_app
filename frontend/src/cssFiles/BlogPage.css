@@ -23,7 +23,7 @@
   top: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 1),transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8),transparent);
 }
 
 .blog-page-banner-wrapper{
@@ -135,7 +135,7 @@
 
 .blog-page-comments {
   padding: 10px;
-  background-color: #fafafa;
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 8px;
   min-height: 100px;
   text-align: center;

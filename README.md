@@ -1,17 +1,14 @@
 # blogging_app
 
     - Biggest mistake / learing
-    Not Plan the project
-        UI needs to planned first 
-        Then the code structure
-        And always stick to the plan no matter what, because a small change in UI or feature may cause you your entire code to change
+        Not Planning the project
+            UI needs to planned first 
+            Then the code structure
+            And always stick to the plan no matter what, because a small change in UI or feature may cause you to change your entire code (portion of your project)
 
 
 
-
-
-
-    - Problems to be fixed
+- Problems to be fixed
 
 1. Write and article page  
 
@@ -23,11 +20,8 @@ Also the options can't be accessed while the process is happening everything sho
 
 Because even after pressing the post button options can be altered
 
-
-
-
 2. Redux is useless unless the state persists throughout the pages even after navigating
 
-
-
 3. AI Sentiment to implement ✅
+
+4.

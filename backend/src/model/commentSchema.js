@@ -18,7 +18,7 @@ const commentSchema = new Schema({
     commentedUserRef: {
         type: Schema.Types.ObjectId,
         ref: "userDetail",
-        required
+        required: true
     }
 },{timestamps: true})
 
