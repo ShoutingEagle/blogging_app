@@ -1,6 +1,8 @@
 // backend
 
-const baseUrl = "http://localhost:8000/api/v1"
+const baseUrl = import.meta.env.VITE_API_URL ;
+
+// const baseUrl = "http://localhost:8000/api/v1";  
 const validateUser = "/auth/check-auth"
 const sendOtp = "/auth/userAuth-generateOtp"
 const remainingUserDetail = "/profile/user-detail"
@@ -23,6 +25,17 @@ const postBlogComment = "blog/post-comment"
 const login = "/userAuth/login"
 const completeProfile = "/user/complete-profile"
 
-export {baseUrl,validateUser,sendOtp,blogList,blogPost,remainingUserDetail,getUserDetail, blogDetailEndpoint, getBlogComments, postBlogComment}
-
-export {login,completeProfile}
+export {
+    baseUrl,
+    validateUser,
+    sendOtp,
+    blogList,
+    blogPost,
+    remainingUserDetail,
+    getUserDetail,
+    blogDetailEndpoint,
+    getBlogComments,
+    postBlogComment,
+    login,
+    completeProfile,
+};
