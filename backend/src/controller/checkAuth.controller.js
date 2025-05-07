@@ -4,11 +4,13 @@ import asyncHandler from "../util/asyncHandler.js";
 import ApiResponse from "../util/ApiResponse.js";
 import jwt from "jsonwebtoken";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV,
-    samesite: process.env.SAMESITE,
-    maxAge: 15 * 60 * 1000 // 15 minutes
+    secure: isProd, // true in prod (requires HTTPS), false in dev
+    sameSite: isProd ? "None" : "Lax", // None in prod for cross-origin, Lax for dev
+    maxAge: 15 * 60 * 1000, // 15 minutes
 };
 
 const refreshTokenOptions = {
