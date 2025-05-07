@@ -35,23 +35,35 @@ const AuthComponent = () => {
 
         otpRef.current.forEach((item) => (item.value = "")); // Clear OTP fields
 
+        try {
+            const response = await apiClient({
+                method: "POST",
+                url: userRegister,         
+                baseURL: baseUrl,
+                data: {
+                    email,
+                    otp,
+                    mode
+                },
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                withCredentials: true
+            });
 
-        const response = await axios.post(`${baseUrl}/${userRegister}`, {
-            email,
-            otp,
-            mode
-        }, {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true
-        } // Ensuring JSON format 
-        )
-
-        if (!response.data.success) {
-            throw new Error(response.data.data || "Some error occurred, please try again");
+            if (!response.data.success) {
+                throw new Error(response.data.data || "Some error occurred, please try again");
+            }
+    
+            setResponseMessage(response.data.data);
+            navigate("/");
+            
+        } catch (error) {
+            console.log(error.message)
         }
+        
 
-        setResponseMessage(response.data.data);
-        navigate("/");
+        
 
     };
 
