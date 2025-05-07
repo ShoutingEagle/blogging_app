@@ -11,8 +11,20 @@
     - Make a test route, which will be used to check after deploying the backend
 
 
+    - Understood the value of .env variables
+        - It lets you switch dynamically between production and development with changing the variable values
+        - for development the files take the values from local .env file
+        - in production the values are taken from environment variables 
+        - care free coding, no hassle and pushing code to repo without hassling of changing variable values
+          every time.
+
+
 
 - Problems to be fixed
+
+7. Fix Home Button
+
+6. show appropriate message to user
 
 1. Write and article page  
 
@@ -26,5 +38,11 @@ Because even after pressing the post button options can be altered
 
 2. Redux is useless unless the state persists throughout the pages even after navigating
 
-3. AI Sentiment to implement ✅
 
+4. Need to make category feature
+
+5. Implement search Feature
+
+
+
+3. AI Sentiment to implement ✅
