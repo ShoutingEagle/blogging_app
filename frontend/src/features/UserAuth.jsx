@@ -79,7 +79,8 @@ const AuthComponent = () => {
 
         setEmail(enteredEmail); // Update the email state
 
-        const response = await apiClient({
+        try {
+             const response = await apiClient({
             method: "POST",
             url: sendOtp,
             baseURL: baseUrl,
@@ -88,15 +89,20 @@ const AuthComponent = () => {
                 email:enteredEmail,
                 mode
             }
-        })
+            })
 
-        if (!response.success) {
-            setResponseMessage(response.message)
-            throw new Error(response.message || "Some error occurred, please try again");
+            if (!response.success) {
+                setResponseMessage(response.message)
+                throw new Error(response.message || "Some error occurred, please try again");
+            }
+            setIsOtpSent(true);
+            setIsLoading(false)
+            setResponseMessage(response.message);
+        } catch (error) {
+            console.log(error)
         }
-        setIsOtpSent(true);
-        setIsLoading(false)
-        setResponseMessage(response.message);
+
+       
     };
 
 
