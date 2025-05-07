@@ -146,6 +146,7 @@ const Dashboard = () => {
 const Navbar = () => {
     return (
         <nav className="navbar">
+            <HomeButton/>
             <LoginButton />
             <SignupButton />
             <SearchBar />

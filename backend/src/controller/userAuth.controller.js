@@ -23,9 +23,9 @@ const userAuth = asyncHandler(async(req,res) => {
     const {email,otp,mode} = req.body
     
     const otpVerification = await otpModel.findOne({email})  
-    if(!otpVerification) throw new ApiError("Otp not found, please send otp first")
+    if(!otpVerification) throw new ApiError(401,"Otp not found, please send otp first")
     
-    if(otp!==otpVerification.otp) throw new ApiError("Incorrect OTP")
+    if(otp!==otpVerification.otp) throw new ApiError(401,"Incorrect OTP")
     
     
     await otpModel.deleteOne({email})

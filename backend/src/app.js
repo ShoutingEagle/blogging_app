@@ -27,6 +27,7 @@ import authRoutes from "./route/authRoutes.js"
 import blogRoutes from "./route/blogRoutes.js"
 import profileRoutes from "./route/profileRoutes.js"
 import testRoute from "./route/testRoute.js"
+import errorHandler from "./util/errorHandler.utility.js";
 
 
 app.use("/api",testRoute)
@@ -34,6 +35,8 @@ app.use("/api",testRoute)
 app.use("/api/v1/auth",authRoutes)
 app.use("/api/v1/blog",blogRoutes) 
 app.use("/api/v1/profile",profileRoutes) 
+
+app.use(errorHandler)
 
 
 export default app

@@ -28,9 +28,13 @@ Welcome to **GamingGeek** – a full-stack blogging application built for gamers
 
 ---
 
+
+
 ## 🛠️ Features to Improve
 
 ### 🏠 7. Fix Home Button Behavior
+
+### 👤 8. Logout implementation
 
 ### 📣 6. Show Appropriate User Feedback
 
