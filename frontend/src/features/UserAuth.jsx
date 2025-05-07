@@ -31,7 +31,6 @@ const AuthComponent = () => {
     const handleVerifyOtp = async (e) => {
         e.preventDefault();
         let otp = Number(otpRef.current.map((item) => item.value).join(""));
-
         otpRef.current.forEach((item) => (item.value = "")); // Clear OTP fields
 
         try {
@@ -50,7 +49,8 @@ const AuthComponent = () => {
                 withCredentials: true
             });
 
-            if (!response.data.success) {
+
+            if (!response.success) {
                 throw new Error(response.data.data || "Some error occurred, please try again");
             }
     
@@ -60,10 +60,6 @@ const AuthComponent = () => {
         } catch (error) {
             console.log(error.message)
         }
-        
-
-        
-
     };
 
 
