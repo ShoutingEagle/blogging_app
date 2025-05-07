@@ -20,16 +20,17 @@ function Home() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        console.log(baseUrl)
         try {
-            const fetchAuthStatus = async () => {
+            const fetchAuthStatus = async() => {
                 const response = await apiClient({
                     method: "GET",
                     url: validateUser,
                     baseURL: baseUrl,  
                     withCredentials: true
                 })
-    
-                if(!response.data.isProfileComplete){
+                console.log(response)
+                if(!response.success){
                     navigate(completeProfile)
                 } 
                 response.success? dispatch(checkAuthStatus(true)): navigate(login);
