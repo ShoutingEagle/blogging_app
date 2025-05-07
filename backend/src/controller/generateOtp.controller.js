@@ -15,7 +15,7 @@ const sendOtpEmail = async (email,otp) => {
         html: `<p>Your OTP is <strong> ${otp}</strong>.</p>`,
     });
 
-    if (!sendMailResponse || sendMailResponse.accepted.length === 0){
+    if (!sendMailResponse || sendMailResponse?.accepted.length === 0){
         throw new ApiError(500,"Failed to send OTP email, please try again.")
     }
 }
