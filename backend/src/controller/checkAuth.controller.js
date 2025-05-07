@@ -6,7 +6,8 @@ import jwt from "jsonwebtoken";
 
 const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
+    samesite: "None",
     maxAge: 15 * 60 * 1000 // 15 minutes
 };
 
