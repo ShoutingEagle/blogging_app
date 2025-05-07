@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios"
 import "../cssFiles/Profile.css"
+import { baseUrl } from "../network/endPoints.js";
 
 
 
@@ -51,7 +52,7 @@ const Profile = () => {
         const formData = new FormData();
         formData.append("file", selectedFile);
 
-        const response = await axios.post("http://localhost:8000/api/v1/profile/profile-pic",
+        const response = await axios.post(`${baseUrl}/profile/profile-pic`,
                 formData, // body
                 {
                     withCredentials: true, // correct place for cookies

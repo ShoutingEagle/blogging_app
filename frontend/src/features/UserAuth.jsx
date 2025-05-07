@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "../cssFiles/UserAuth.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios"
-import { baseUrl,sendOtp } from "../network/endPoints.js";
+import { baseUrl,sendOtp, userRegister } from "../network/endPoints.js";
 import Loader from "../components/Loader.jsx"
 import apiClient from "../services/apiClient";
 
@@ -36,7 +36,7 @@ const AuthComponent = () => {
         otpRef.current.forEach((item) => (item.value = "")); // Clear OTP fields
 
 
-        const response = await axios.post("http://localhost:8000/api/v1/auth/userAuth-auth", {
+        const response = await axios.post(`${baseUrl}/${userRegister}`, {
             email,
             otp,
             mode

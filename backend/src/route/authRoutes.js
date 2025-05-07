@@ -11,6 +11,4 @@ router.route("/userAuth-generateOtp").post(generateOtp)
 router.route("/userAuth-auth").post(userAuth)
 router.route("/check-auth").get(checkAuth)
 
-
-
 export default router
