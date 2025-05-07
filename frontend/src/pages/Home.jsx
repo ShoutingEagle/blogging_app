@@ -29,7 +29,6 @@ function Home() {
                     baseURL: baseUrl,  
                     withCredentials: true
                 })
-                console.log("response",response)
 
                 if(!response.success){
                     navigate(login)
