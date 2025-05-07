@@ -30,10 +30,11 @@ function Home() {
                     withCredentials: true
                 })
                 console.log(response)
-                if(!response.success){
+                if(!response?.data?.isProfileComplete){
                     navigate(completeProfile)
-                } 
-                response.success? dispatch(checkAuthStatus(true)): navigate(login);
+                }else{
+                    response.success? dispatch(checkAuthStatus(true)): navigate(login);
+                }
             };
             fetchAuthStatus();
         } catch (error) {
