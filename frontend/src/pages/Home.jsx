@@ -29,11 +29,18 @@ function Home() {
                     baseURL: baseUrl,  
                     withCredentials: true
                 })
-                console.log(response)
-                if(!response?.data?.isProfileComplete){
-                    navigate(completeProfile)
-                }else{
-                    response.success? dispatch(checkAuthStatus(true)): navigate(login);
+                console.log("response",response)
+
+                if(!response.success){
+                    navigate(login)
+                }
+
+                if(response.success){
+                    if(response.data.isProfileComplete){
+                        dispatch(checkAuthStatus(true))
+                    }else{
+                        navigate(completeProfile)
+                    }
                 }
             };
             fetchAuthStatus();
