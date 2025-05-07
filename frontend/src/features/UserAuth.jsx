@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "../cssFiles/UserAuth.css";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios"
 import { baseUrl,sendOtp, userRegister } from "../network/endPoints.js";
 import Loader from "../components/Loader.jsx"
 import apiClient from "../services/apiClient";

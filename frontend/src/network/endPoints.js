@@ -16,8 +16,8 @@ const blogDetailEndpoint = "/blog/blogId"
 const getBlogComments = "blog/get-comments"
 const postBlogComment = "blog/post-comment"
 
-    // user-related
-    const getUserDetail = "/profile/get-user-detail" 
+// user-related
+const getUserDetail = "/profile/get-user-detail" 
 
 
 

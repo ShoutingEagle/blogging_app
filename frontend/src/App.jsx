@@ -37,7 +37,7 @@ function App() {
           <Route path='article-list' element={<ArticleList />} />
         </Route>
 
-        <Route path='*' element={<Home />}/>
+        <Route path='*' element={<div>404 Page Not Found</div>} />
       </Routes>
     </div>
   )
