@@ -20,7 +20,6 @@ function Home() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(baseUrl)
         try {
             const fetchAuthStatus = async() => {
                 const response = await apiClient({
