@@ -1,10 +1,14 @@
 # blogging_app
 
+- Learnings
+
     - Biggest mistake / learing
         Not Planning the project
             UI needs to planned first 
             Then the code structure
             And always stick to the plan no matter what, because a small change in UI or feature may cause you to change your entire code (portion of your project)
+
+    - Make a test route, which will be used to check after deploying the backend
 
 
 
@@ -24,4 +28,3 @@ Because even after pressing the post button options can be altered
 
 3. AI Sentiment to implement ✅
 
-4.
