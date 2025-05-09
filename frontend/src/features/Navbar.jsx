@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import HomeButton from "../features/HomeButton.jsx"
 
 
 
