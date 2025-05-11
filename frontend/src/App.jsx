@@ -8,7 +8,6 @@ import ArticleList from "./features/ArticleList.jsx"
 import Profile from "./features/Profile.jsx"
 import BlogWriteForm from "./features/BlogWriteForm.jsx"
 import Setting from "./features/Setting.jsx"
-import HomeButton from './features/HomeButton.jsx'
 import CompleteProfile from './features/Completeprofile.jsx'
 import BlogPage from './features/BlogPage.jsx'
 

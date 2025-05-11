@@ -10,25 +10,30 @@ import { baseUrl,completeProfile,validateUser } from "../network/endPoints.js";
 import { login } from "../network/endPoints.js";
 import { checkAuthStatus} from "../slices/authSlice.js";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
+import Loader from "../components/Loader.jsx";
 
 
 
 
 
 function Home() {
+    console.log("Home Component")
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const [isLoading,setIsLoading] = useState(true) 
+
     useEffect(() => {
-        try {
             const fetchAuthStatus = async() => {
+                try {
                 const response = await apiClient({
                     method: "GET",
                     url: validateUser,
                     baseURL: baseUrl,  
                     withCredentials: true
                 })
-
+                setIsLoading(false)
                 if(!response.success){
                     navigate(login)
                 }
@@ -40,16 +45,29 @@ function Home() {
                         navigate(completeProfile)
                     }
                 }
-            };
-            fetchAuthStatus();
-        } catch (error) {
-            console.log(error)
-        }
-    }, []);
+                }catch (error) {
+                    console.log(error)
+                }
+            }
+
+        fetchAuthStatus();
+    },[]);
     return (
-        <>
-            <Navbar />
-            <HomeFeed />
+        <>  
+            {
+                isLoading?
+                    <div className="loading-container">
+                        <div className="loader-wrapper">
+                            <Loader />
+                            <p className="loading-text">Loading, please wait...</p>
+                        </div>
+                    </div>:
+                    <>
+                        <Navbar />
+                        <HomeFeed />
+                    </>
+
+            }
         </>
     );
 }
