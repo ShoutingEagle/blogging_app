@@ -1,0 +1,39 @@
+.logout{
+    position: absolute;
+    padding: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    right: 5rem;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 185, 33, 0.8);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+.logout:hover{
+    background: rgba(255, 174, 0, 0.8);
+    cursor: pointer;
+    
+}
+
+.logout:focus{
+    background: rgba(255, 174, 0, 0.8);
+    cursor:default;
+}
+
+.logout-text{
+    color: rgba(0, 0, 0, 1);
+    font-weight: 600;
+}
+
+.logout-icon{
+    color: rgba(0, 0, 0, 1);
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

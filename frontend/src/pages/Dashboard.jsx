@@ -13,6 +13,7 @@ import { login } from "../network/endPoints.js";
 import { checkAuthStatus } from "../slices/authSlice.js";
 import PopUpMessage from "../components/PopUpMessage.jsx";
 import { setBlogLists } from "../slices/blogSlice.js";
+import Logout from "../components/Logout.jsx";
 
 
 function Dashboard() {
@@ -38,7 +39,6 @@ function Dashboard() {
                     baseURL: baseUrl,
                     withCredentials: true
                 })
-                console.log(userDetail.data.blogs)
                 if(userDetail.success){
                     setUserData(userDetail.data.userDetails)
                     setBlogsData(userDetail.data.blogs)
@@ -57,9 +57,8 @@ function Dashboard() {
     return (
         <div className="dashboard">
             <PopUpMessage />
+            <Logout/>
             <div className="dashboard-section">
-
-
                 <div className="dashboard-header" onClick={(e) => handleClick(e, "profile")}>
                     {/* <img src=""/> */}
                     <div className="dashboard-header-user">

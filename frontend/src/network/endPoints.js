@@ -4,6 +4,7 @@ const baseUrl = import.meta.env.VITE_API_URL ;
 
 // const baseUrl = "http://localhost:8000/api/v1";  
 const validateUser = "/auth/check-auth"
+const logout = "/auth/logout"
 const userRegister = "/auth/userAuth-auth"
 const sendOtp = "/auth/userAuth-generateOtp"
 const remainingUserDetail = "/profile/user-detail"
@@ -20,7 +21,6 @@ const postBlogComment = "blog/post-comment"
 const getUserDetail = "/profile/get-user-detail" 
 
 
-
 // frontend
 
 const login = "/userAuth/login"
@@ -35,6 +35,7 @@ export {
     blogPost,
     remainingUserDetail,
     getUserDetail,
+    logout,
     blogDetailEndpoint,
     getBlogComments,
     postBlogComment,
