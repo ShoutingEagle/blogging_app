@@ -63,9 +63,10 @@ const SearchBar = () => {
 const Category = () => {
     const [hoveredCategory, setHoveredCategory] = useState(null);
     const [categoryOffsets, setCategoryOffsets] = useState({});
+    const [isEntered,setIsEntered] = useState(false)
 
     const categories = [
-        { name: "View All", image: asset6, left: -5 },
+        { name: "ViewAll", image: asset6, left: -5 },
         { name: "Gaming", image: asset5, left: -3.5 },
         { name: "PC", image: asset4, left: -2 },
         { name: "Console", image: asset3, left: -0.5 },
@@ -99,6 +100,16 @@ const Category = () => {
         setCategoryOffsets({});
     }
 
+    const handleHoveredSelectedCategory = () => {
+        setIsEntered(!isEntered)
+    }
+
+    const handleHoveredDeSelectCategory = () => {
+        setIsEntered(!isEntered)
+    }
+
+
+
     return (
         <div className="categoryContainer">
             <div
@@ -114,13 +125,18 @@ const Category = () => {
 
             {categories.map((item, index) => (
                 <div
-                    className={`categoryStripe${item.name.replace(/\s+/g, "")}`}
+                    className={`categoryStripe${item.name} ${
+                    isEntered && item.name===hoveredCategory ?hoveredCategory:""}`}
                     key={index}
                     style={hoveredCategory ? { left: `${categoryOffsets[item.name] || item.left}rem` } : {}}
                     onMouseEnter={() => handleSelectedCategoryEnter(item.name)}
                     onMouseLeave={handleSelectedCategoryLeave}
                 >
-                    <span className="imageViewAll"><img src={item.image} alt={item.name} /></span>
+                    <span 
+                    className="imageViewAll" 
+                    onMouseEnter={handleHoveredSelectedCategory}
+                    onMouseLeave={handleHoveredDeSelectCategory}
+                    ><img src={item.image} alt={item.name} /></span>
                     <span className="textViewAll">{item.name}</span>
                 </div>
             ))}
@@ -147,7 +163,7 @@ const Dashboard = () => {
 const Navbar = () => {
     return (
         <nav className="navbar">
-            
+            <HomeButton/>
             <LoginButton />
             <SignupButton />
             <SearchBar />

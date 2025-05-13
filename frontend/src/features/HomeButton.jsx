@@ -2,7 +2,7 @@ import { useLocation, useNavigate} from "react-router-dom";
 import "../cssFiles/HomeButton.css";
 import { FaHome } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import home from "../network/endPoints.js";
+import {home} from "../network/endPoints.js";
 
 
 

@@ -204,6 +204,26 @@
     cursor: pointer;
 }
 
+.ViewAll {
+    background-color: #ffba26;
+    z-index: 3;
+}
+
+.Gaming {
+    background-color: #f34949;
+    z-index: 2;
+}
+
+.PC {
+    background-color: #20d882;
+    z-index: 1;
+}
+
+.Console {
+    background-color: rgb(255, 124, 49);
+}
+
+
 
 .textcategoryStripe {
     transform: rotate(-90);

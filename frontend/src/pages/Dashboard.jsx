@@ -89,21 +89,23 @@ function Dashboard() {
                 <div className="dashboard-blogs-marked-articles" >
                     <p className="dashboard-blogs-marked-articles-header">Marked Articles</p>
                     <div className="dashboard-blogs-marked-articles-list">
-                            No list to show
+                            This feature is not yet implemented
                     </div>
                 </div>
 
 
                 <div className="dashboard-blogs-your-articles">
-                    <p className="dashboard-blogs-your-articles-header">Your Articles</p>
-                    <div className="user-blogs-list-container">
-                        {blogsData?
-                            blogsData.map((item,index) => {
-                                return (
-                                    <p className="user-blogs-list" key={item._id}> {item.title}</p>
-                            )})
-                            : <p>No list to show</p>
-                        }
+                    <div className="dashboard-blogs-your-articles-header-list-wrapper">
+                        <p className="dashboard-blogs-your-articles-header">Your Articles</p>
+                        <div className="user-blogs-list-container">
+                            {blogsData?
+                                blogsData.map((item) => {
+                                    return (
+                                        <p className="user-blogs-list" key={item._id}> {item.title}</p>
+                                )})
+                                : <p>No list to show</p>
+                            }
+                        </div>
                     </div>
                     <div className="see-all-container">
                         <span 

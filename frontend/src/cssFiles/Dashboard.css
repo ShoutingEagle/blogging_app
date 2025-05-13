@@ -137,7 +137,12 @@
     transition: transform 200ms ease-in-out;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 0.7rem;
+}
+
+.dashboard-blogs-your-articles-header-list-wrapper{
+    height: 80%;;
 }
 
 .dashboard-blogs-your-articles:hover {
