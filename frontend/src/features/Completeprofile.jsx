@@ -3,9 +3,10 @@ import {useNavigate} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import apiClient from "../services/apiClient.js"
 import "../cssFiles/Completeprofile.css"; // create this CSS file too
-import { baseUrl,remainingUserDetail} from "../network/endPoints.js";
+import { baseUrl,login,remainingUserDetail,validateUser} from "../network/endPoints.js";
 import validateImageSize from "../services/validateImageSize.js";
 import Loader from "../components/Loader.jsx";
+import { useEffect } from "react";
 
 function CompleteProfile() {
     const [error,setError] = useState("⚠️ Image dimension must below 200 x 200 px.")
@@ -13,6 +14,29 @@ function CompleteProfile() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    useEffect(() => {
+                const fetchAuthStatus = async() => {
+                try {
+                const response = await apiClient({
+                    method: "GET",
+                    url: validateUser,
+                    baseURL: baseUrl,  
+                    withCredentials: true
+                })
+                console.log(response)
+                setIsLoading(false)
+                if(!response.success){
+                    navigate(login)
+                }
+
+                }catch (error) {
+                    console.log(error)
+                }
+            }
+
+        fetchAuthStatus();
+    },[])
 
     const uploadProfileData = async(e) => {
         e.preventDefault()
@@ -45,12 +69,6 @@ function CompleteProfile() {
         } catch (error) {
             setError(error.message)
         }
-
-
-        
-
-        
-
     }
 
 

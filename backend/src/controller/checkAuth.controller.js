@@ -35,8 +35,8 @@ const checkAuth = asyncHandler(async (req, res) => {
     if (!user) throw new ApiError(404, "User not found.");
     
     if (!user.profile_pic || !user.username) {
-        return res.status(400).json(
-            new ApiResponse(400, { 
+        return res.status(200).json(
+            new ApiResponse(200, { 
                 isProfileComplete: false 
             }, "Profile incomplete")
         );

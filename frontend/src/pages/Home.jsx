@@ -32,6 +32,7 @@ function Home() {
                     baseURL: baseUrl,  
                     withCredentials: true
                 })
+                console.log(response)
                 setIsLoading(false)
                 if(!response.success){
                     navigate(login)
