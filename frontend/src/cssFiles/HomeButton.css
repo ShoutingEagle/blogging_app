@@ -1,0 +1,31 @@
+.icon-button,
+.home-button {
+  position: fixed;
+  left: 3rem;
+  height: 8rem;
+  transform-origin: top left;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1rem;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 1.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  transform: rotate(-90deg) translateY(-100%);
+  color: rgb(255, 255, 255);
+  transition: left 0.3s ease, transform 0.3s ease;
+  top: 62vh;
+  background: #ff3d00;
+  z-index: 999;
+}
+
+.icon-button {
+  cursor: default;
+}
+
+.home-button {
+  cursor: pointer;
+}

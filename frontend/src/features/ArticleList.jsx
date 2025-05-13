@@ -3,34 +3,9 @@ import "../cssFiles/ArticleList.css";
 import { FaEdit, FaCommentAlt, FaStar, FaShareAlt, FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
-// const articles = [
-    // {
-    //     _id: "1",
-    //     title: "The Evolution of Gaming: From Pixels to Photorealism",
-    //     content: "Gaming has come a long way since the days of 8-bit graphics and limited soundtracks...",
-    //     author: { username: "GameMaster99" },
-    //     comments: 12,
-    //     rating: 8,
-    //     category: "Gaming"
-    // },
-    // {
-    //     _id: "2",
-    //     title: "Top 10 Indie Games of 2024 You Shouldn't Miss",
-    //     content: "Indie games continue to surprise us with innovative gameplay and heartfelt storytelling...",
-    //     author: { username: "IndieHunter" },
-    //     comments: 8,
-    //     rating: 5,
-    //     category: "Indie"
-    // },
-    // ...more
-// ];
 
 const ArticleList = () => {
     const articles = useSelector(state => state.blog.bloglists)
-
-    useEffect(() => {
-        console.log(articles)
-    },[])
 
     if (!articles.length) return <p>Loading or no articles...</p>
     return (

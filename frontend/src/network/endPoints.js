@@ -22,7 +22,7 @@ const getUserDetail = "/profile/get-user-detail"
 
 
 // frontend
-
+const home = "/"
 const login = "/userAuth/login"
 const completeProfile = "/user/complete-profile"
 
@@ -39,6 +39,7 @@ export {
     blogDetailEndpoint,
     getBlogComments,
     postBlogComment,
+    home,
     login,
     completeProfile,
 };

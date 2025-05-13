@@ -18,7 +18,6 @@ import Loader from "../components/Loader.jsx";
 
 
 function Home() {
-    console.log("Home Component")
     const navigate = useNavigate();
     const dispatch = useDispatch();
 

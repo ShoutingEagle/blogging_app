@@ -10,13 +10,14 @@ import BlogWriteForm from "./features/BlogWriteForm.jsx"
 import Setting from "./features/Setting.jsx"
 import CompleteProfile from './features/Completeprofile.jsx'
 import BlogPage from './features/BlogPage.jsx'
+import HomeButton from './features/HomeButton.jsx'
 
 
 function App() {
 
   return (
     <div >
-      
+      <HomeButton/>
       <Routes>
         <Route path='/' element={<Home />} >
           <Route index element={<HomeFeed />} />

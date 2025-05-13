@@ -1,22 +1,34 @@
-import { useNavigate } from "react-router-dom";
-import "../cssFiles/Navbar.css";
+import { useLocation, useNavigate} from "react-router-dom";
+import "../cssFiles/HomeButton.css";
 import { FaHome } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import home from "../network/endPoints.js";
 
 
 
 const HomeButton = () => {
-    const status = useSelector(state => state.status.userStatus)
+    const [path,setPath] = useState(null)
     const navigate = useNavigate();
+    const {pathname} = useLocation()
+
+    useEffect(() => {
+        if(pathname === "/") setPath("icon-button")
+        if(pathname === "/user/dashboard" || pathname.includes("/blog")) setPath("home-button")
+    },[pathname])
+   
     return (
-        <div onClick={() => navigate("/")} className="home-button">
+        <>
+        {
+        path ?
+        <div onClick={() => navigate(home)} className={path}>
             <div className="homeIcon"><FaHome /></div>
             <div className="homeText">
                 <span className="homePrimaryText">Gaming</span>
                 <span className="homeSecondaryText">Geeks</span>
             </div>
-        </div>
-
+        </div> : null
+        }
+        </>
     );
 };
 

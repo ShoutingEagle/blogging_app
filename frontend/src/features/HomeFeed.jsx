@@ -26,7 +26,6 @@ const HomeFeed = () => {
                     baseURL: baseUrl,
                     withCredentials: true
                 });
-                console.log(response.data)
                 setBlogLists(response.data);
             } catch (error) {
                 console.error("Failed to fetch blog list:", error);
