@@ -9,7 +9,7 @@ const userDetail = asyncHandler(async (req, res) => {
     const { _id } = req.user;
     const file = req.file;
     const { username } = req.body;
-
+    console.log(_id,username)
     if (!file) throw new ApiError(400, "Image upload failed or no image was provided.");
     if (!username) throw new ApiError(400, "Username is required.");
 
