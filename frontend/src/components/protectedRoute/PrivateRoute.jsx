@@ -16,7 +16,7 @@ const PrivateRoute = ({ children }) => {
           baseURL: baseUrl,
           withCredentials: true,
         });
-
+        console.log(response)
         if (response.success) {
           setIsAuthenticated(true);
         } else {
