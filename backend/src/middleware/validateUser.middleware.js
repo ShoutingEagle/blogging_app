@@ -6,23 +6,22 @@ import jwt from "jsonwebtoken"
 
 const validateUser = asyncHandler(async (req, res, next) => {
     const { accessToken, refreshToken } = req.cookies;
-    console.log("access token -> ",accessToken)
-    console.log("refresh token -> ",refreshToken)
     let accessTokenFailed = false;
 
     if (accessToken) {
         try {
             const decodedToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+            console.log("decoded token -> ",decodedToken)
             if (!decodedToken) throw new ApiError(500, "Token decoding failed");
             req.user = { _id: decodedToken._id };
             return next();
         } catch (error) {
+            console.log("error line 19")
             console.error("Access token verification failed:", error.message);
             console.trace("Trace from access token failure");
             accessTokenFailed = true;
         }
     }
-
     if ((!accessToken || accessTokenFailed) && !refreshToken) {
         throw new ApiError(401, "Unauthorized access");
     }
@@ -33,9 +32,11 @@ const validateUser = asyncHandler(async (req, res, next) => {
             if (!newAccessToken) throw new ApiError(500, "Could not refresh access token");
 
             const decodedToken = jwt.verify(newAccessToken, process.env.ACCESS_TOKEN_SECRET);
+            console.log("decoded token line 35-> ",decodedToken)
             req.user = { _id: decodedToken._id };
             return next();
         } catch (error) {
+            console.log("error line 39")
             console.error("Refresh token verification failed:", error.message);
             console.trace("Trace from refresh token failure");
             throw new ApiError(500, "Token verification failed");
