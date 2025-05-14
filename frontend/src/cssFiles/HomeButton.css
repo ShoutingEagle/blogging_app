@@ -1,3 +1,7 @@
+.home-button-default{
+  display: none;
+}
+
 .icon-button,
 .home-button {
   position: fixed;
