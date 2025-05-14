@@ -4,10 +4,11 @@ import "../cssFiles/Completeprofile.css"; // create this CSS file too
 import { baseUrl,login,remainingUserDetail,validateUser} from "../network/endPoints.js";
 import validateImageSize from "../services/validateImageSize.js";
 import Loader from "../components/Loader.jsx";
+import { useState } from "react";
 
 
 function CompleteProfile() {
-
+    const [isLoading,setIsLoading] = useState(null)
     const uploadProfileData = async(e) => {
         e.preventDefault()
         setIsLoading(true)
@@ -56,7 +57,6 @@ function CompleteProfile() {
                     <div className="input-group">
                         <label htmlFor="profilePic">Upload your Profile Picture</label>
                         <input type="file" name="file" id="profilePic" accept="image/*" />
-                        <p>{error}</p>
                     </div>
 
                     <div className="input-group">
