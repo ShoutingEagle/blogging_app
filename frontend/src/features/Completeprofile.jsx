@@ -1,49 +1,19 @@
-import React, { useState } from "react";
-import {useNavigate} from "react-router-dom"
-import {useDispatch, useSelector} from "react-redux"
+
 import apiClient from "../services/apiClient.js"
 import "../cssFiles/Completeprofile.css"; // create this CSS file too
 import { baseUrl,login,remainingUserDetail,validateUser} from "../network/endPoints.js";
 import validateImageSize from "../services/validateImageSize.js";
 import Loader from "../components/Loader.jsx";
-import { useEffect } from "react";
+
 
 function CompleteProfile() {
-    const [error,setError] = useState("⚠️ Image dimension must below 200 x 200 px.")
-    const [isLoading,setIsLoading] = useState(false)
-
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-                const fetchAuthStatus = async() => {
-                try {
-                const response = await apiClient({
-                    method: "GET",
-                    url: validateUser,
-                    baseURL: baseUrl,  
-                    withCredentials: true
-                })
-                console.log(response)
-                setIsLoading(false)
-                if(!response.success){
-                    navigate(login)
-                }
-
-                }catch (error) {
-                    console.log(error)
-                }
-            }
-
-        fetchAuthStatus();
-    },[])
 
     const uploadProfileData = async(e) => {
         e.preventDefault()
         setIsLoading(true)
         const username = e.target.username.value
         const file = e.target.file.files[0]
-        const fileName = file.name.length > 20 ? file.name.substring(0,20) + "..." : file.name
+        // const fileName = file.name.length > 20 ? file.name.substring(0,20) + "..." : file.name
 
         if(!file) {
             setError("⚠️ Please upload a file")

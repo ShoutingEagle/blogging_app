@@ -11,6 +11,7 @@ import Setting from "./features/Setting.jsx"
 import CompleteProfile from './features/Completeprofile.jsx'
 import BlogPage from './features/BlogPage.jsx'
 import HomeButton from './features/HomeButton.jsx'
+import PrivateRoute from './components/protectedRoute/PrivateRoute.jsx'
 
 
 function App() {
@@ -25,7 +26,12 @@ function App() {
 
         <Route path='/userAuth/:mode' element={<UserAuth />} />
 
-        <Route path='/user/complete-profile' element={<CompleteProfile/>}/>
+
+        
+          <Route path='/user/complete-profile' element={<PrivateRoute><CompleteProfile/></PrivateRoute>}/>
+        
+
+
 
         <Route path='/blog/:blogId' element={<BlogPage/>}/>
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../cssFiles/UserAuth.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { baseUrl,sendOtp, userRegister } from "../network/endPoints.js";
+import { baseUrl,completeProfile,home,sendOtp, userRegister } from "../network/endPoints.js";
 import Loader from "../components/Loader.jsx"
 import apiClient from "../services/apiClient";
 import { GiHazardSign } from "react-icons/gi";
@@ -47,6 +47,7 @@ const AuthComponent = () => {
         otp = Number(otp);
         
 
+        otpRef.current.forEach((item) => (item.value = "")); // Clear OTP fields
         try {
             const response = await apiClient({
                 method: "POST",
@@ -62,17 +63,16 @@ const AuthComponent = () => {
                 },
                 withCredentials: true
             });
-
+            
 
             if (!response.success) {
                 displayMessage(otpVerificationResponse)
                 throw new Error(response.data.data || "Some error occurred, please try again");
             }
             
-            otpRef.current.forEach((item) => (item.value = "")); // Clear OTP fields
-            navigate("/");
-            
-        } catch (error) {
+            if(mode === "signup") navigate(completeProfile);
+            if(mode === "login") navigate(home)
+            }catch (error) {
             console.log(error.message)
         }
     };
@@ -109,7 +109,7 @@ const AuthComponent = () => {
             })
 
    
-
+            console.log(response)
             if (!response.success) {
                 displayMessage(response.message)
                 setIsLoading(false)

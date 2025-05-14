@@ -10,8 +10,6 @@ const router = Router()
 
 router.route("/profile-pic").post(validateUser,upload.single("file"),profile)
 router.route("/user-detail").post(validateUser,upload.single("file"),userDetail)
-
-
 router.route("/get-user-detail").get(validateUser,getUserDetails)
 
 export default router
