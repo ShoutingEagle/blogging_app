@@ -6,6 +6,8 @@ import jwt from "jsonwebtoken"
 
 const validateUser = asyncHandler(async (req, res, next) => {
     const { accessToken, refreshToken } = req.cookies;
+    console.log("access token -> ",accessToken)
+    console.log("refresh token -> ",refreshToken)
     let accessTokenFailed = false;
 
     if (accessToken) {
