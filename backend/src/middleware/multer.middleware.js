@@ -1,4 +1,13 @@
 import multer from "multer"
+import fs from "fs"
+import path from "path"
+
+const tempDir = path.resolve("public/temp")
+
+if(!fs.existsSync(tempDir)){
+    fs.mkdir(tempDir,{recursive:true})
+    console.log("✅ Created missing folder: public/temp");
+}
 
 const storage = multer.diskStorage({
     destination : function(req,file,cb) {
