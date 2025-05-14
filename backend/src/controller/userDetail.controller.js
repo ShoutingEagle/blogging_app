@@ -6,7 +6,7 @@ import fileUpload from "../util/cloudinary.js";
 import assetModel from "../model/assetSchema.model.js";
 
 const userDetail = asyncHandler(async (req, res) => {
-    console.log(req.body.username)
+
     const { _id } = req.user;
     const file = req.file;
     const { username } = req.body;
@@ -47,7 +47,7 @@ const userDetail = asyncHandler(async (req, res) => {
         },
         {new: true, validateBeforeSave: false}
     )
-    console.log("updateUserDetail _id",updateUserDetail._id)
+
 
     const updateAsset = await assetModel.findByIdAndUpdate(
         asset._id,
@@ -56,7 +56,7 @@ const userDetail = asyncHandler(async (req, res) => {
         },
         {new: true, validateBeforeSave:true}
     )
-    console.log("updateAsset",updateAsset)
+
 
 
     return res
