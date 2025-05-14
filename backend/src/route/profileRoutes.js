@@ -9,7 +9,15 @@ import getUserDetails from "../controller/getUserDetails.controller.js";
 const router = Router()
 
 router.route("/profile-pic").post(validateUser,upload.single("file"),profile)
-router.route("/user-detail").post(validateUser,upload.single("file"),userDetail)
+router.route("/user-detail").post(validateUser,(req, res, next) => {
+    upload.single("file")(req, res, function (err) {
+      if (err) {
+        console.error("❌ Multer error:", err);
+        return res.status(400).json({ message: "File upload failed", error: err.message });
+      }
+      next();
+    });
+  },userDetail)
 router.route("/get-user-detail").get(validateUser,getUserDetails)
 
 export default router
