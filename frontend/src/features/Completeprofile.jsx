@@ -1,14 +1,16 @@
-
+import {useNavigate} from "react-router-dom"
 import apiClient from "../services/apiClient.js"
 import "../cssFiles/Completeprofile.css"; // create this CSS file too
-import { baseUrl,login,remainingUserDetail,validateUser} from "../network/endPoints.js";
+import { baseUrl,home,remainingUserDetail} from "../network/endPoints.js";
 import validateImageSize from "../services/validateImageSize.js";
 import Loader from "../components/Loader.jsx";
 import { useState } from "react";
 
 
 function CompleteProfile() {
+    const [error,setError] = useState("")
     const [isLoading,setIsLoading] = useState(null)
+    const navigate = useNavigate()
     const uploadProfileData = async(e) => {
         e.preventDefault()
         setIsLoading(true)
@@ -16,8 +18,15 @@ function CompleteProfile() {
         const file = e.target.file.files[0]
         // const fileName = file.name.length > 20 ? file.name.substring(0,20) + "..." : file.name
 
+        if (!username.trim()) {
+        setError("⚠️ Username cannot be empty");
+        setIsLoading(false);
+        return;
+        }
+
         if(!file) {
             setError("⚠️ Please upload a file")
+            setIsLoading(false)
             return 
         }
 
@@ -33,12 +42,17 @@ function CompleteProfile() {
                 data: formData,
                 withCredentials: true
             })   
+
             console.log(response)
             if(response.success) {
-                navigate("/")
+                navigate(home)
+            } else{
+                setError("Something went wrong")
             }
         } catch (error) {
-            setError(error.message)
+            setError(error.message || "An error occured")
+        } finally {
+            setIsLoading(false)
         }
     }
 
