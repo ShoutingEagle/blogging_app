@@ -1,176 +1,84 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import "../cssFiles/Navbar.css";
-import { FaHome } from "react-icons/fa";
-import { MdLogin } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
-import { IoSearchOutline } from "react-icons/io5";
-import { FaArrowRight } from "react-icons/fa6";
-import { useSelector } from "react-redux";
-import HomeButton from "../features/HomeButton.jsx"
-
-
-
-
-import asset3 from "../assets/asset3.png"
-import asset4 from "../assets/asset4.png"
-import asset5 from "../assets/asset5.png"
-import asset6 from "../assets/asset6.png"
-
-
-
-
-
-
-const LoginButton = () => {
-    const navigate = useNavigate();
-    const status = useSelector(state => state.status.userStatus)
-    return (
-        <div className={`${status ? "loggedIn" : ""} loginButton`} onClick={() => navigate("/userAuth/login")}>
-            <div className="loginIcon"><MdLogin /></div>
-            <div className="loginText">
-                <span className="loginPrimaryText">Login</span>
-            </div>
-        </div>
-    );
-};
-
-const SignupButton = () => {
-    const navigate = useNavigate();
-    const status = useSelector(state => state.status.userStatus)
-    return (
-        <div onClick={() => navigate("/userAuth/signup")} className={`${status ? "loggedIn" : ""} signupButton`}>
-            <div className="signupIcon"><FaUser /></div>
-            <div className="signupText">
-                <span className="signupPrimaryText">Signup</span>
-            </div>
-        </div>
-    );
-};
-
-const SearchBar = () => {
-    return (
-        <div className="searchStripe">
-            Search
-            <div className="searchLogo">
-                <input type="text" placeholder="Search for a blog" className="searchInput" />
-                <IoSearchOutline />
-            </div>
-        </div>
-    )
-}
-
-const Category = () => {
-    const [hoveredCategory, setHoveredCategory] = useState(null);
-    const [categoryOffsets, setCategoryOffsets] = useState({});
-    const [isEntered,setIsEntered] = useState(false)
-
-    const categories = [
-        { name: "ViewAll", image: asset6, left: -5 },
-        { name: "Gaming", image: asset5, left: -3.5 },
-        { name: "PC", image: asset4, left: -2 },
-        { name: "Console", image: asset3, left: -0.5 },
-    ];
-
-    function handleParentCategoryEnter() {
-        setHoveredCategory("category");
-    }
-
-    function handleParentCategoryLeave() {
-        setHoveredCategory(null);
-        setCategoryOffsets({});
-    }
-
-    function handleSelectedCategoryEnter(category) {
-        setHoveredCategory(category);
-
-        let newOffsets = {};
-        let flag = false;
-
-        categories.forEach((item) => {
-            if (item.name === category) flag = true;
-            if (flag) newOffsets[item.name] = item.left + 7; // Adjust dynamically
-        });
-
-        setCategoryOffsets(newOffsets);
-    }
-
-    function handleSelectedCategoryLeave() {
-        setHoveredCategory(null);
-        setCategoryOffsets({});
-    }
-
-    const handleHoveredSelectedCategory = () => {
-        setIsEntered(!isEntered)
-    }
-
-    const handleHoveredDeSelectCategory = () => {
-        setIsEntered(!isEntered)
-    }
-
-
-
-    return (
-        <div className="categoryContainer">
-            <div
-                className="categoryStripe"
-                onMouseEnter={handleParentCategoryEnter}
-                onMouseLeave={handleParentCategoryLeave}
-            >
-                <div className="categoryText">
-                    <span className="textcategoryStripe">Categories</span>
-                    <span className="iconCategoryStripe"><FaArrowRight /></span>
-                </div>
-            </div>
-
-            {categories.map((item, index) => (
-                <div
-                    className={`categoryStripe${item.name} ${
-                    isEntered && item.name===hoveredCategory ?hoveredCategory:""}`}
-                    key={index}
-                    style={hoveredCategory ? { left: `${categoryOffsets[item.name] || item.left}rem` } : {}}
-                    onMouseEnter={() => handleSelectedCategoryEnter(item.name)}
-                    onMouseLeave={handleSelectedCategoryLeave}
-                >
-                    <span 
-                    className="imageViewAll" 
-                    onMouseEnter={handleHoveredSelectedCategory}
-                    onMouseLeave={handleHoveredDeSelectCategory}
-                    ><img src={item.image} alt={item.name} /></span>
-                    <span className="textViewAll">{item.name}</span>
-                </div>
-            ))}
-        </div>
-    );
-};
-
-const Dashboard = () => {
-    const navigate = useNavigate();
-    const status = useSelector(state => state.status.userStatus);
-
-    if (!status) return null; // Only show when logged in
-
-    return (
-        <div className="dashboardButton" onClick={() => navigate("/user/dashboard")}>
-            <div className="dashboardIcon"><FaUser /></div>
-            <div className="dashboardText">
-                <span className="dashboardPrimaryText">Dashboard</span>
-            </div>
-        </div>
-    );
-};
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import icon from "../assets/icon.svg"
+import searchIcon from "../assets/search-icon.svg"
+import nav from "../assets/nav.jpg"
+import { useDispatch, useSelector } from 'react-redux';
+import { sidebarToggle } from '../slices/systemSlice.js';
 
 const Navbar = () => {
-    return (
-        <nav className="navbar">
-            <HomeButton/>
-            <LoginButton />
-            <SignupButton />
-            <SearchBar />
-            <Dashboard />
-            <Category />
-        </nav>
-    );
+  const dispatch = useDispatch()
+  const isSideBarOpen = useSelector(state => state.system.isSideBarOpen)
+  const {username, profilePic} = useSelector(state => state.userData)
+  const [width,setWidth] = useState(window.innerWidth)
+
+  useEffect(() => { 
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize',handleResize)
+    return () => window.removeEventListener('resize',handleResize)
+  },[width])
+
+  return (
+    <nav className='h-[5rem] overflow-hidden text-white text-lg md:text-xl fixed top-0 w-full z-60 bg-gray-100 shadow-lg fixed'>
+      <img src={nav} alt='img' className='absolute'/>
+      <div className="h-full mx-auto px-4 py-3 flex justify-between items-center relative">
+        {/* Logo */}
+        <div className="flex justify-center items-center gap-2 font-bold relative ">
+          <span className='-rotate-30 w-25 md:w-30 absolute'><img src={icon} alt='img' className=''/></span>
+          <Link to={'/'} className='z-10'>
+            <span className=''>Gaming</span>
+            <span className='text-black'>Geeks</span>
+          </Link>
+        </div>
+
+
+
+        {/* Right Side - Profile / Login */}
+        <div className="flex justify-end items-center gap-8 w-[50%]">
+          {/* <div className="flex items-center bg-gray-100 w-[60%] border border-gray-500 p-2">
+              <input
+              type="text"
+              placeholder="Search blogs..."
+              className="bg-transparent focus:outline-none text-gray-700 text-sm placeholder:text-gray-500 w-full"
+              />
+              <img src={searchIcon} alt="search icon" className="w-4 " />
+          </div> */}
+
+          {/* profile pic */}
+          {width > 480 && (
+            <div className="flex items-center gap-1 text-sm font-semibold text-white p-2">
+              <span className="w-10 h-10 rounded-full ring-2 ring-white shadow-md overflow-hidden bg-black/50">
+                <img src={profilePic} className="w-full h-full object-cover" alt="Profile" />
+              </span>
+            </div>
+          )}
+
+
+
+          {/* Hamburger */}
+          <div className="cursor-pointer">
+            <button onClick={() => dispatch(sidebarToggle())} className="focus:outline-none ">
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {isSideBarOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;
+

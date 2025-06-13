@@ -25,6 +25,8 @@ const getUserDetail = "/profile/get-user-detail"
 const home = "/"
 const login = "/userAuth/login"
 const completeProfile = "/user/complete-profile"
+const writeArticle = "/write-article"
+const yourArticleList = "/your-articles"
 
 export {
     baseUrl,
@@ -43,4 +45,6 @@ export {
     home,
     login,
     completeProfile,
+    writeArticle,
+    yourArticleList
 };

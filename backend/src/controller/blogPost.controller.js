@@ -34,10 +34,10 @@ import axios from "axios";
 
 const blogPost = asyncHandler(async(req,res) => {
     const {_id} = req.user
-    const {category,title,article} = req.body
+    const {category,title,initialThoughts,rating,article} = req.body
     const file = req.file
 
-  
+    console.log(category,title,initialThoughts,rating,article)
     
     if (!category) throw new ApiError(400, "Category is required for the blog post.");
     
@@ -46,6 +46,13 @@ const blogPost = asyncHandler(async(req,res) => {
     if (!article) throw new ApiError(400, "Article content is missing. Please write something in the blog.");
     
     if (!file) throw new ApiError(400, "Image upload failed or no image was provided for the blog.");
+
+    if (!initialThoughts || initialThoughts.trim() === "")
+      throw new ApiError(400, "Please share your initial thoughts about the blog.");
+
+    if (!rating || rating < 1 || rating > 5)
+      throw new ApiError(400, "Please provide a valid rating between 1 and 5.");
+
     
 
     // upload image to cloudinary
@@ -78,7 +85,7 @@ const blogPost = asyncHandler(async(req,res) => {
 
     // create post
 
-    const post = await blogModel.create({category,title,article,article_image:asset.secure_url,owner:_id,sentiment})
+    const post = await blogModel.create({category,title,initialThoughts,article,rating,article_image:asset.secure_url,owner:_id,sentiment})
 
     if(!post) throw new ApiError(500,"post cannot be created")
     

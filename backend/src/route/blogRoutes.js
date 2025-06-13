@@ -6,11 +6,13 @@ import blogList from "../controller/blogList.controller.js";
 import blogDetail from "../controller/blogDetail.controller.js";
 import comments from "../controller/comment.controller.js";
 import postComment from "../controller/postComment.controller.js";
+import testController from "../controller/testController.js";
 
 const router = Router()
 
 router.route("/blog-post").post(validateUser,upload.single("file"),blogPost)
-router.route("/blog-list").get(blogList)
+// router.route("/blog-post").post(testController)
+router.route("/blog-list").post(blogList)
 router.route("/blogId/:_id").get(blogDetail)
 
 

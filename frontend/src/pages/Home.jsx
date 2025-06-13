@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "../cssFiles/Home.css";
 import Navbar from "../features/Navbar";
 import HomeFeed from "../features/HomeFeed";
@@ -6,52 +6,94 @@ import { useNavigate } from "react-router-dom";
 
 
 import apiClient from "../services/apiClient.js";
-import { baseUrl,completeProfile,validateUser } from "../network/endPoints.js";
+import { baseUrl,completeProfile,getUserDetail,validateUser } from "../network/endPoints.js";
 import { login } from "../network/endPoints.js";
-import { checkAuthStatus} from "../slices/authSlice.js";
-import { useDispatch } from "react-redux";
+import { setAuthStatus} from "../slices/authSlice.js";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Loader from "../components/Loader.jsx";
-
-
+import Footer from "../features/Footer.jsx";
+import Sidebar from "../components/Sidebar.jsx";
+import Featured from "../features/Featured.jsx";
+import UserAuthentication from "../features/UserAuthentication.jsx";
+import { setGlobalError } from "../slices/errorSlice.js";
+import { setProfilePic, setUsername, setYourArticles } from "../slices/userDataSlice.js";
 
 
 
 function Home() {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const [isLoading,setIsLoading] = useState(true) 
-
     useEffect(() => {
-            const fetchAuthStatus = async() => {
-                try {
+        const fetchAuthStatus = async() => {
+            try {
                 const response = await apiClient({
                     method: "GET",
                     url: validateUser,
                     baseURL: baseUrl,  
                     withCredentials: true
                 })
-                console.log(response)
-                setIsLoading(false)
-                if(!response.success){
-                    navigate(login)
+                
+                if(!response.success) {
+                    dispatch(setAuthStatus({
+                        isUser: false,
+                        login: true,
+                        otpsent: false,
+                        signup: false,
+                        isProfileComplete: false
+                    }))
                 }
-
-                if(response.success){
-                    if(response.data.isProfileComplete){
-                        dispatch(checkAuthStatus(true))
+                else{
+                    if(!response.data.isProfileComplete){
+                        dispatch(setAuthStatus({
+                            isUser: true,
+                            login: false,
+                            otpsent: false,
+                            signup: false,
+                            isProfileComplete: false
+                        }))
                     }else{
-                        navigate(completeProfile)
+                        dispatch(setAuthStatus({
+                            isUser: true,
+                            login: false,
+                            otpsent: false,
+                            signup: false,
+                            isProfileComplete: true
+                        }))
                     }
                 }
-                }catch (error) {
-                    console.log(error)
-                }
+                setIsLoading(false)
+                
+            }catch(error){
+                console.log(error)
             }
-
+        }
         fetchAuthStatus();
     },[]);
+
+    useEffect(() => {
+        const userData = async() => {
+            try {
+                const response = await apiClient({
+                    method: "GET",
+                    url: getUserDetail,
+                    baseURL: baseUrl,
+                    withCredentials: true
+                })
+                if(!response) dispatch(setGlobalError(response.message))
+                const {username,profile_pic} = response.data.userDetails
+                dispatch(setUsername(username))
+                dispatch(setYourArticles(response.data.blogs))
+                dispatch(setProfilePic(profile_pic))
+
+
+            } catch (error) {
+                dispatch(setGlobalError(error.message))
+            }
+        }
+        userData()
+    },[])
+
     return (
         <>  
             {
@@ -62,12 +104,18 @@ function Home() {
                             <p className="loading-text">Loading, please wait...</p>
                         </div>
                     </div>:
-                    <>
-                        <Navbar />
+                    <div className="pt-20 bg-gray-100 ">
+                        <div className="flex items-center justify-center w-full h-[35rem] px-6">
+                            <Featured/>
+                            <UserAuthentication/>
+                        </div>
                         <HomeFeed />
-                    </>
+                        <Footer/>
+                    </div>
+
 
             }
+
         </>
     );
 }

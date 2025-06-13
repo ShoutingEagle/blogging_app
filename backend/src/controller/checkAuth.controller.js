@@ -19,9 +19,15 @@ const refreshTokenOptions = {
 };
 
 const checkAuth = asyncHandler(async (req, res) => {
+
     const refreshToken = req.cookies.refreshToken;
 
-    if (!refreshToken) throw new ApiError(401, "Session expired. Please log in again.");
+    if (!refreshToken) return res
+        .status(401)
+        .json(new ApiResponse(401, {
+            userAuth: false, 
+            isProfileComplete: false
+        }, "failed"));
 
     let decodedToken;
     try {
@@ -35,8 +41,8 @@ const checkAuth = asyncHandler(async (req, res) => {
     if (!user) throw new ApiError(404, "User not found.");
     
     if (!user.profile_pic || !user.username) {
-        return res.status(200).json(
-            new ApiResponse(200, { 
+        return res.status(401).json(
+            new ApiResponse(401, { 
                 isProfileComplete: false 
             }, "Profile incomplete")
         );

@@ -32,13 +32,13 @@ Welcome to **GamingGeek** – a full-stack blogging application built for gamers
 
 ## 🛠️ Features to Improve
 
-### 🏠 7. Fix Home Button Behavior
+### 🏠 7. Fix Home Button Behavior ✅ (Done 🎉)
 
-### 👤 8. Logout implementation
+### 👤 8. Logout implementation ✅ (Done 🎉)
 
 ### 📣 6. Show Appropriate User Feedback
 
-- Users should always get **clear feedback** (success, error, loading).
+- Users should always get **clear feedback** (success, error, loading). ✅ (Done 🎉)
 
 ---
 
