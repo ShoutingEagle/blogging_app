@@ -18,12 +18,27 @@ import Featured from "../features/Featured.jsx";
 import UserAuthentication from "../features/UserAuthentication.jsx";
 import { setGlobalError } from "../slices/errorSlice.js";
 import { setProfilePic, setUsername, setYourArticles } from "../slices/userDataSlice.js";
+import { setSidebarToggle, sidebarToggle } from "../slices/systemSlice.js";
 
 
 
 function Home() {
     const dispatch = useDispatch();
     const [isLoading,setIsLoading] = useState(true) 
+
+    useEffect(() => {
+    const handleScroll = () => {
+        dispatch(setSidebarToggle(false));
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+    }, []);
+
+
     useEffect(() => {
         const fetchAuthStatus = async() => {
             try {
@@ -104,8 +119,12 @@ function Home() {
                             <p className="loading-text">Loading, please wait...</p>
                         </div>
                     </div>:
-                    <div className="pt-20 bg-gray-100 ">
-                        <div className="flex items-center justify-center w-full h-[35rem] px-6">
+                    <div 
+                        className="pt-30 sm:pt-20 bg-gray-100 flex flex-col gap-10"
+                        onScroll={() => dispatch(setSidebarToggle(false))}
+                        onClick={() => dispatch(setSidebarToggle(false))}
+                    >
+                        <div className="flex flex-col-reverse md:flex-row gap-4 items-center justify-center w-full h-full md:h-[35rem] px-6">
                             <Featured/>
                             <UserAuthentication/>
                         </div>

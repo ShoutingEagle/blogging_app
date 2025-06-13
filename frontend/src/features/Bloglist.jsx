@@ -90,7 +90,8 @@ const Bloglist = () => {
   
 
   return (
-    <>
+    <>  
+        <h2 className="text-3xl font-semibold mb-6 text-gray-900">Articles</h2>
         {bloglists.length===0 ? (
           <div className="flex justify-center items-center w-full text-center">
             <div className="max-w-md p-8 bg-white shadow-lg">

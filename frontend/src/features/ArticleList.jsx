@@ -72,7 +72,7 @@ const ArticleList = () => {
                 <div className="p-4 flex flex-col justify-between w-full">
                     <div>
                         <div className="flex justify-between items-center mb-1">
-                            <span className="text-sm uppercase bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
+                            <span className="text-sm uppercase bg-purple-100 text-purple-700 px-2 py-1 ">
                                 {article.category}
                             </span>
                             <span className="text-xs text-gray-400">

@@ -64,7 +64,7 @@ const Sidebar = () => {
 
         <div
           onClick={handleLogout}
-          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition text-sm cursor-pointer"
+          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition text-sm cursor-pointer "
         >
           <img src={powerIcon} alt="Logout" className="w-5 filter invert" />
           <span>Logout</span>

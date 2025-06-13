@@ -89,8 +89,8 @@ const Login = () => {
     
     };
     return (
-        <div className="h-[30rem] w-[25rem] flex flex-col gap-10 justify-center items-center p-6 shadow-xl rounded-2xl max-w-md mx-auto bg-white">
-            <p className="text-3xl font-semibold text-indigo-700">Login</p>
+        <div className="sm:h-[30rem] w-full sm:w-[25rem] flex flex-col gap-5 sm:gap-10 justify-center items-center p-6 rounded-2xl max-w-md mx-auto bg-white">
+            <p className="text-2xl lg:text-3xl font-semibold text-indigo-700">Login</p>
             
             {/* Message area (keep height fixed to avoid layout shifts) */}
             <div className="h-6 text-sm text-red-500">

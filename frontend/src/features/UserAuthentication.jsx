@@ -6,7 +6,7 @@ import Signup from "./Signup.jsx"
 import { AnimatePresence, motion } from "framer-motion"
 
 const slideVariants = {
-    initial: { x: 300, opacity: 0 },
+    initial: { x: -300, opacity: 0 },
     animate: { x: 0, opacity: 1, transition: { duration: 0.4 } },
     exit: { y: -300, opacity: 0, transition: { duration: 0.3 } }
 }
@@ -31,7 +31,7 @@ const UserAuthentication = () => {
     }
 
     return (
-        <div className={`h-full w-full ${isProfileComplete?"hidden":"flex"} justify-center items-center overflow-hidden`}>
+        <div className={`lg:h-full w-full sm:w-[500px] lg:w-[40%]${isProfileComplete?"hidden":"flex"} justify-center items-center overflow-hidden `}>
             <AnimatePresence mode="wait">
                 {activeComponent && (
                     <motion.div
@@ -40,7 +40,7 @@ const UserAuthentication = () => {
                         initial="initial"
                         animate="animate"
                         exit="exit"
-                        className="w-full h-full flex justify-center items-center overflow-hidden "
+                        className="w-full h-full flex justify-center items-center overflow-hidden"
                     >
                         {activeComponent}
                     </motion.div>

@@ -11,7 +11,7 @@ const Featured = () => {
 
   }
   return (
-    <div className={`relative  h-[25rem] md:w-[1450px] overflow-hidden rounded-2xl shadow-lg` }>
+    <div className={`relative h-[25rem] lg:w-[1050px] xl:w-[1250px] 2xl:w-[1450px] overflow-hidden rounded-2xl shadow-lg` }>
       <img src={featured} alt="Featured" className="w-full h-full object-cover brightness-75" />
 
       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 md:p-10 text-white">

@@ -18,9 +18,12 @@ const systemSlice = createSlice({
         },
         setHasMore: (state,action) => {
             state.hasMore = action.payload
+        },
+        setSidebarToggle: (state,action) => {
+            state.isSideBarOpen = action.payload
         }
     }
 })
 
-export const{sidebarToggle, setCursor, setHasMore} = systemSlice.actions
+export const{sidebarToggle, setCursor, setHasMore, setSidebarToggle} = systemSlice.actions
 export default systemSlice.reducer
