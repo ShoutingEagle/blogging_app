@@ -18,6 +18,7 @@ const validateUser = asyncHandler(async (req, res, next) => {
             accessTokenFailed = true;
         }
     }
+    
     if ((!accessToken || accessTokenFailed) && !refreshToken) {
         throw new ApiError(401, "Unauthorized access");
     }

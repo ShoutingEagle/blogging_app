@@ -7,12 +7,15 @@ import blogDetail from "../controller/blogDetail.controller.js";
 import comments from "../controller/comment.controller.js";
 import postComment from "../controller/postComment.controller.js";
 import testController from "../controller/testController.js";
+import latestReviews from "../controller/latestReviews.js";
+
 
 const router = Router()
 
-router.route("/blog-post").post(validateUser,upload.single("file"),blogPost)
 // router.route("/blog-post").post(testController)
+router.route("/blog-post").post(validateUser,upload.single("file"),blogPost)
 router.route("/blog-list").post(blogList)
+router.route("/latest-reviews").get(latestReviews)
 router.route("/blogId/:_id").get(blogDetail)
 
 

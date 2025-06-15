@@ -73,7 +73,7 @@ const Bloglist = () => {
     return () => {
       if (currentRef) observer.unobserve(currentRef);
     };
-  }, [bloglists, hasMore]); // observerRef.current is safe to use here
+  }, [bloglists, hasMore]); 
 
   const handleClick = (e) => {
     const card =  e.target.closest("[data-id]")
@@ -82,7 +82,6 @@ const Bloglist = () => {
     }
     const blogId = card.getAttribute("data-id")
     navigate(`/blog/${blogId}`)
-
   }
 
 

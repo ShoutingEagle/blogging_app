@@ -13,6 +13,7 @@ const remainingUserDetail = "/profile/user-detail"
 const blogList = "/blog/blog-list"
 const blogPost = "/blog/blog-post"
 const blogDetailEndpoint = "/blog/blogId"
+const latestReviews = "/blog/latest-reviews"
 
 const getBlogComments = "blog/get-comments"
 const postBlogComment = "blog/post-comment"
@@ -40,6 +41,7 @@ export {
     getUserDetail,
     logout,
     blogDetailEndpoint,
+    latestReviews,
     getBlogComments,
     postBlogComment,
     home,

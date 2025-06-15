@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -18,10 +17,10 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/" className="hover:text-orange-400 transition">Home</Link></li>
-            <li><Link to="/blogs" className="hover:text-orange-400 transition">Blogs</Link></li>
-            <li><Link to="/about" className="hover:text-orange-400 transition">About</Link></li>
-            <li><Link to="/contact" className="hover:text-orange-400 transition">Contact</Link></li>
+            <li><p className="hover:text-orange-400 transition cursor-pointer">Home</p></li>
+            <li><p className="hover:text-orange-400 transition cursor-pointer">Blogs</p></li>
+            <li><p className="hover:text-orange-400 transition cursor-pointer">About</p></li>
+            <li><p className="hover:text-orange-400 transition cursor-pointer">Contact</p></li>
           </ul>
         </div>
 
@@ -29,10 +28,10 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Categories</h3>
           <ul className="space-y-2 text-sm">
-            <li>Action</li>
-            <li>RPG</li>
-            <li>Multiplayer</li>
-            <li>Simulation</li>
+            <li><p>Action</p></li>
+            <li><p>RPG</p></li>
+            <li><p>Multiplayer</p></li>
+            <li><p>Simulation</p></li>
           </ul>
         </div>
 
@@ -40,10 +39,10 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Follow Us</h3>
           <div className="flex gap-4 mt-2 text-xl">
-            <a href="#" className="hover:text-blue-400 transition">🌐</a>
-            <a href="#" className="hover:text-blue-500 transition">🐦</a>
-            <a href="#" className="hover:text-pink-500 transition">📸</a>
-            <a href="#" className="hover:text-blue-700 transition">📘</a>
+            <span className="hover:text-blue-400 transition cursor-pointer">🌐</span>
+            <span className="hover:text-blue-500 transition cursor-pointer">🐦</span>
+            <span className="hover:text-pink-500 transition cursor-pointer">📸</span>
+            <span className="hover:text-blue-700 transition cursor-pointer">📘</span>
           </div>
         </div>
 
@@ -76,3 +75,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
